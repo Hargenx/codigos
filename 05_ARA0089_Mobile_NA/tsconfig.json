@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2020",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
+  }
+}
+/*
+module: "CommonJS"
+Define o sistema de módulos como CommonJS, que é o padrão para Node.js.
+
+target: "ES2020"
+Compila o TypeScript para uma versão do JavaScript que suporta recursos modernos (ES2020).
+
+esModuleInterop: true
+Permite uma interoperabilidade melhor entre módulos CommonJS e ESModules.
+
+skipLibCheck: true
+Pula a verificação de tipos nas declarações de biblioteca para reduzir o tempo de compilação.
+
+forceConsistentCasingInFileNames: true
+Garante que o uso de maiúsculas e minúsculas em nomes de arquivo seja consistente.
+
+strict: true
+Ativa o modo estrito, aplicando todas as verificações rigorosas de tipo para um código mais robusto.
+*/
