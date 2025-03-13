@@ -1,4 +1,3 @@
-import FactoryMethod.Veiculo;
 
 public class Bicicleta implements Veiculo {
     @Override

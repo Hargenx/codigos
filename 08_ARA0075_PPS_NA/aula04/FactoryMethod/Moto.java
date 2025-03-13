@@ -1,5 +1,3 @@
-import FactoryMethod.Veiculo;
-
 public class Moto implements Veiculo {
     @Override
     public void dirigir() {
