@@ -1,3 +1,5 @@
+package A02_ARA0101_PPJ_CG.aula01;
+
 
 public class exercicio01 {
     public static void main(String[] args) {

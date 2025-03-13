@@ -1,3 +1,5 @@
+package A02_ARA0101_PPJ_CG.aula01;
+
 // Classe abstrata, serve de "molde"
 abstract class ContaBancaria {
     protected double saldo;
