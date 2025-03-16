@@ -1,0 +1,43 @@
+@startuml Diagrama
+' Interface que define os métodos para um item de pedido
+interface PedidoItem {
+  + isValid(): boolean
+  + getQuantidade(): int
+  + getPrecoUnitario(): double
+  + getProduto(): Produto
+}
+
+' Classe concreta que implementa a interface PedidoItem
+class ItemPedido {
+  - quantidade: int
+  - precoUnitario: double
+  - produto: Produto
+  + isValid(): boolean
+  + getQuantidade(): int
+  + getPrecoUnitario(): double
+  + getProduto(): Produto
+}
+
+PedidoItem <|.. ItemPedido
+
+' Interface para a fábrica de itens de pedido
+interface PedidoItemFactory {
+  + createItem(): PedidoItem
+}
+
+' Implementação concreta da fábrica de itens de pedido
+class PedidoItemFactoryImpl {
+  + createItem(): PedidoItem
+}
+
+PedidoItemFactory <|.. PedidoItemFactoryImpl
+
+' Classe responsável por processar os itens do pedido
+class ProcessadorPedido {
+  - factory: PedidoItemFactory
+  + ProcessadorPedido(factory: PedidoItemFactory)
+  + process(items: List<PedidoItem>): List<PedidoItem>
+}
+
+ProcessadorPedido --> PedidoItemFactory
+@enduml

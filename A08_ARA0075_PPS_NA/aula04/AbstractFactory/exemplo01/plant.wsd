@@ -1,0 +1,56 @@
+@startuml UML ABF
+
+abstract class Pedido {
+  - itens : List<PedidoItem>
+  + adicionarItem(produto: Produto, quantidade: int)
+  + getItens() : List<PedidoItem>
+  + calcularTotal() : double
+  --
+  # criarItem(produto: Produto, quantidade: int) : PedidoItem
+}
+
+class PedidoLojaFisica {
+  # criarItem(produto: Produto, quantidade: int) : PedidoItem
+}
+
+class PedidoOnline {
+  # criarItem(produto: Produto, quantidade: int) : PedidoItem
+}
+
+Pedido <|-- PedidoLojaFisica
+Pedido <|-- PedidoOnline
+
+interface PedidoItem {
+  + getProduto() : Produto
+  + getQuantidade() : int
+  + getPreco() : double
+}
+
+class ItemPedidoLojaFisica {
+  - produto: Produto
+  - quantidade: int
+  + getProduto() : Produto
+  + getQuantidade() : int
+  + getPreco() : double
+}
+
+class ItemPedidoOnline {
+  - produto: Produto
+  - quantidade: int
+  - FRETE_FIXO : double
+  + getProduto() : Produto
+  + getQuantidade() : int
+  + getPreco() : double
+}
+
+PedidoItem <|.. ItemPedidoLojaFisica
+PedidoItem <|.. ItemPedidoOnline
+
+class Produto {
+  - nome : String
+  - precoBase : double
+  + getNome() : String
+  + getPrecoBase() : double
+}
+
+@enduml
