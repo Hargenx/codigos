@@ -1,0 +1,49 @@
+@startuml exemplo_polimorfismo
+' Classe abstrata Employee
+abstract class Employee {
+  - name: String
+  + Employee(name: String)
+  + work(): void
+  + calculateSalary(): double
+}
+
+' Classe Developer que herda de Employee
+class Developer {
+  - baseSalary: double
+  - overtimeHours: int
+  - overtimeRate: double
+  + Developer(name: String, baseSalary: double, overtimeHours: int, overtimeRate: double)
+  + work(): void
+  + calculateSalary(): double
+}
+
+' Classe Manager que herda de Employee
+class Manager {
+  - baseSalary: double
+  - bonus: double
+  + Manager(name: String, baseSalary: double, bonus: double)
+  + work(): void
+  + calculateSalary(): double
+}
+
+' Classe Intern que herda de Employee
+class Intern {
+  - stipend: double
+  + Intern(name: String, stipend: double)
+  + work(): void
+  + calculateSalary(): double
+}
+
+' Classe principal para execução
+class PolimorfismoExemplo {
+  + main(String[] args): void
+}
+
+' Relacionamentos de herança
+Employee <|-- Developer
+Employee <|-- Manager
+Employee <|-- Intern
+
+' Associação de uso: a classe principal utiliza Employee
+PolimorfismoExemplo ..> Employee : usa
+@enduml
