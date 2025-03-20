@@ -1,0 +1,57 @@
+@startuml uml
+skinparam style strict
+
+title Diagrama de Classes - Builder para Nota de Negociação
+
+interface NotaNegociacaoBuilder {
+  + buildCabecalho(): void
+  + buildOperacoes(): void
+  + buildSumario(): void
+  + getNota(): NotaNegociacao
+}
+
+class PdfNotaNegociacaoBuilder implements NotaNegociacaoBuilder {
+  - nota: NotaNegociacao
+  + buildCabecalho(): void
+  + buildOperacoes(): void
+  + buildSumario(): void
+  + getNota(): NotaNegociacao
+}
+
+class XmlNotaNegociacaoBuilder implements NotaNegociacaoBuilder {
+  - nota: NotaNegociacao
+  + buildCabecalho(): void
+  + buildOperacoes(): void
+  + buildSumario(): void
+  + getNota(): NotaNegociacao
+}
+
+class XlsNotaNegociacaoBuilder implements NotaNegociacaoBuilder {
+  - nota: NotaNegociacao
+  + buildCabecalho(): void
+  + buildOperacoes(): void
+  + buildSumario(): void
+  + getNota(): NotaNegociacao
+}
+
+class NotaNegociacao {
+  - conteudo: StringBuilder
+  + adicionarConteudo(parte: String): void
+  + getConteudo(): String
+}
+
+class NotaNegociacaoDirector {
+  - builder: NotaNegociacaoBuilder
+  + NotaNegociacaoDirector(builder: NotaNegociacaoBuilder)
+  + construirNota(): void
+}
+
+NotaNegociacaoDirector --> NotaNegociacaoBuilder : uses
+NotaNegociacaoBuilder <|.. PdfNotaNegociacaoBuilder
+NotaNegociacaoBuilder <|.. XmlNotaNegociacaoBuilder
+NotaNegociacaoBuilder <|.. XlsNotaNegociacaoBuilder
+PdfNotaNegociacaoBuilder o-- NotaNegociacao : creates
+XmlNotaNegociacaoBuilder o-- NotaNegociacao : creates
+XlsNotaNegociacaoBuilder o-- NotaNegociacao : creates
+
+@enduml

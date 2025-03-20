@@ -1,0 +1,26 @@
+@startuml sequencia
+skinparam style strict
+
+title Diagrama de Sequência - Construção da Nota (PDF)
+
+actor Client
+participant "NotaNegociacaoDirector" as Director
+participant "PdfNotaNegociacaoBuilder" as Builder
+participant "NotaNegociacao" as Product
+
+Client -> Builder: new PdfNotaNegociacaoBuilder()
+Client -> Director: new NotaNegociacaoDirector(Builder)
+Client -> Director: construirNota()
+
+Director -> Builder: buildCabecalho()
+Builder -> Product: adicionarConteudo("PDF: Cabeçalho")
+
+Director -> Builder: buildOperacoes()
+Builder -> Product: adicionarConteudo("PDF: Lista de operações")
+
+Director -> Builder: buildSumario()
+Builder -> Product: adicionarConteudo("PDF: Sumário com totais e taxas")
+
+Client -> Builder: getNota()
+Builder -> Client: NotaNegociacao (objeto pronto)
+@enduml

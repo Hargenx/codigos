@@ -1,0 +1,27 @@
+@startuml uml
+skinparam style strict
+title Padrão Prototype - Configurações de Ambiente
+
+abstract class AmbienteConfig {
+  - url: String
+  - usuario: String
+  - senha: String
+  - timeoutSegundos: int
+  - logDetalhado: boolean
+
+  + clone(): AmbienteConfig
+  + exibirInfo(): void
+}
+
+class DesenvolvimentoConfig
+class ProducaoConfig
+
+AmbienteConfig <|-- DesenvolvimentoConfig
+AmbienteConfig <|-- ProducaoConfig
+
+class AmbientePrototypeRegistry {
+  - prototipos: Map<String, AmbienteConfig>
+  + getPrototipo(tipo: String): AmbienteConfig
+}
+
+@enduml
