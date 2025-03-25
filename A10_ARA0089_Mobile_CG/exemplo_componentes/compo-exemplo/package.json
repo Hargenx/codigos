@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "compo-exemplo": "file:",
     "expo": "~52.0.40",
     "expo-status-bar": "~2.0.1",
     "npm": "^11.2.0",

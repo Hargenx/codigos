@@ -1,37 +1,37 @@
 @startuml exemplo_polimorfismo
-' Classe abstrata Employee
-abstract class Employee {
-  - name: String
-  + Employee(name: String)
-  + work(): void
-  + calculateSalary(): double
+' Classe abstrata Funcionario
+abstract class Funcionario {
+  - nome: String
+  + Funcionario(nome: String)
+  + servico(): void
+  + calcularSalario(): double
 }
 
-' Classe Developer que herda de Employee
-class Developer {
-  - baseSalary: double
-  - overtimeHours: int
-  - overtimeRate: double
-  + Developer(name: String, baseSalary: double, overtimeHours: int, overtimeRate: double)
-  + work(): void
-  + calculateSalary(): double
+' Classe Desenvolvedor que herda de Funcionario
+class Desenvolvedor {
+  - salarioBase: double
+  - horasExtras: int
+  - taxaHoraExtra: double
+  + Desenvolvedor(nome: String, salarioBase: double, horasExtras: int, taxaHoraExtra: double)
+  + servico(): void
+  + calcularSalario(): double
 }
 
-' Classe Manager que herda de Employee
-class Manager {
-  - baseSalary: double
+' Classe Gerente que herda de Funcionario
+class Gerente {
+  - salarioBase: double
   - bonus: double
-  + Manager(name: String, baseSalary: double, bonus: double)
-  + work(): void
-  + calculateSalary(): double
+  + Gerente(nome: String, salarioBase: double, bonus: double)
+  + servico(): void
+  + calcularSalario(): double
 }
 
-' Classe Intern que herda de Employee
-class Intern {
-  - stipend: double
-  + Intern(name: String, stipend: double)
-  + work(): void
-  + calculateSalary(): double
+' Classe Estagiario que herda de Funcionario
+class Estagiario {
+  - estipendio: double
+  + Estagiario(nome: String, estipendio: double)
+  + servico(): void
+  + calcularSalario(): double
 }
 
 ' Classe principal para execução
@@ -39,11 +39,11 @@ class PolimorfismoExemplo {
   + main(String[] args): void
 }
 
-' Relacionamentos de herança
-Employee <|-- Developer
-Employee <|-- Manager
-Employee <|-- Intern
+' Relacionomentos de herança
+Funcionario <|-- Desenvolvedor
+Funcionario <|-- Gerente
+Funcionario <|-- Estagiario
 
-' Associação de uso: a classe principal utiliza Employee
-PolimorfismoExemplo ..> Employee : usa
+' Associação de uso: a classe principal utiliza Funcionario
+PolimorfismoExemplo ..> Funcionario : usa
 @enduml

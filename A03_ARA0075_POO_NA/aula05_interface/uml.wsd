@@ -1,0 +1,49 @@
+@startuml exemplo_interface
+' Classe abstrata Funcionario
+abstract class Funcionario {
+  - nome: String
+  - salarioBase: double
+  + Funcionario(nome: String, salarioBase: double)
+    + getNome(): String
+    + setNome(nome: String): void
+    + getSalarioBase(): double
+    + setSalarioBase(salarioBase: double): void
+  + calcularSalario(): double
+}
+
+interface Pagamento {
+  + calcularSalario(): double
+}
+
+' Classe Desenvolvedor que herda de Funcionario
+class Desenvolvedor {
+  - bonus: double
+  + Desenvolvedor(nome: String, salarioBase:double, bonus: double)
+  + setBonus(bonus: double): void
+  + getBonus(): double
+  + calcularSalario(): double
+}
+
+' Classe Gerente que herda de Funcionario
+class Gerente {
+  - comissao: double
+  + Gerente(nome: String, salarioBase: double, comissao: double)
+  + servico(): void
+  + calcularSalario(): double
+}
+
+' Classe principal para execução
+class InterfaceExemplo {
+  + main(String[] args): void
+}
+
+' Relacionomentos de herança
+Funcionario <|-- Desenvolvedor
+Funcionario <|-- Gerente
+
+' Reçlacionamento de interface
+Funcionario <|.. Pagamento
+
+' Associação de uso: a classe principal utiliza Funcionario
+InterfaceExemplo ..> Funcionario : usa
+@enduml
