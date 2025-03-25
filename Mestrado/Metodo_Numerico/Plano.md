@@ -73,8 +73,7 @@
 - **Calma e Foco:**  
   - Faça uma revisão mental ou rápida resolução de um exemplo simples para “aquecer” o raciocínio antes da prova.
 
-
-**Matrizes: Definições e Propriedades Básicas**
+## **Matrizes: Definições e Propriedades Básicas**
 
 1. **Definição de Matriz:**
    - Uma **matriz** é um arranjo retangular de números organizado em linhas e colunas.
