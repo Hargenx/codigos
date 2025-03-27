@@ -1,0 +1,26 @@
+@startuml Shalow e Deep Copy
+
+class Endereco {
+  - rua : String
+  + Endereco(rua : String)
+  + getRua() : String
+  + setRua(rua : String) : void
+  + toString() : String
+}
+
+class Pessoa {
+  - nome : String
+  - endereco : Endereco
+  + Pessoa(nome : String, endereco : Endereco)
+  + getNome() : String
+  + setNome(nome : String) : void
+  + getEndereco() : Endereco
+  + setEndereco(endereco : Endereco) : void
+  + cloneShallow() : Pessoa
+  + cloneDeep() : Pessoa
+  + toString() : String
+}
+
+Pessoa *-- Endereco : "possui"
+
+@enduml
