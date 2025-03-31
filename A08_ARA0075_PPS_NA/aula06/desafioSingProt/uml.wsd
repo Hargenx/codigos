@@ -1,0 +1,27 @@
+@startuml Desafio
+
+' Classe que implementa o Singleton e fornece o protótipo
+class ConfigManager {
+  - instancia : ConfigManager
+  - configuracao : String
+  - prototipoDocumento : Documento
+  + getInstancia() : ConfigManager
+  + getConfiguracao() : String
+  + setConfiguracao(config : String) : void
+  + getPrototipoDocumento() : Documento
+  + setPrototipoDocumento(doc : Documento) : void
+}
+
+' Classe Documento que implementa o Prototype
+class Documento {
+  - titulo : String
+  - conteudo : String
+  - formato : String
+  + Documento(titulo : String, conteudo : String, formato : String)
+  + clone() : Documento
+}
+
+' Associação: ConfigManager possui um protótipo de Documento
+ConfigManager --> Documento : "possui protótipo"
+
+@enduml

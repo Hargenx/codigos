@@ -1,0 +1,16 @@
+@startuml Looger
+
+class Logger {
+  - instancia: Logger
+  - Logger()
+  + getInstancia() : Logger
+  + log(mensagem: String) : void
+}
+
+class Main {
+  + main(args: String[]) : void
+}
+
+Main --> Logger : uses
+
+@enduml
