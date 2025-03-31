@@ -1,132 +1,187 @@
-import os
-# Define o caminho para o arquivo CSV
-diretorio_atual = os.path.dirname(os.path.abspath(__file__))
-diretorio = os.path.join(diretorio_atual, "alunos.csv")
-def carregar_dados() -> dict:
-    """Carrega os dados do arquivo CSV, se existir; caso contrário, retorna um dicionário vazio."""
-    if os.path.exists(diretorio):
-        with open(diretorio, "r") as arquivo:
-            linhas = arquivo.readlines()
-        return {
-            nome: float(nota)
-            for nome, nota in (linha.strip().split(",") for linha in linhas)
-        }
-    return {}
+from pathlib import Path
+import json
+from typing import List, Dict
 
-def salvar_dados(dados: dict) -> bool:
-    """Salva o dicionário de dados no arquivo CSV."""
-    try:
-        with open(diretorio, "w") as arquivo:
-            for nome, nota in dados.items():
-                arquivo.write(f"{nome},{nota}\n")
-        return True
-    except Exception as e:
-        print(f"Ocorreu um erro ao salvar os dados: {e}")
-        return False
 
-def cadastrar_alunos(nome: str, nota: float) -> bool:
+class Aluno:
     """
-    Cadastra um aluno no arquivo CSV.
-    args: nome: o nome do aluno, nota: a nota do aluno
-    retorno: True se o aluno foi cadastrado com sucesso, False caso contrário
-    """
-    try:
-        with open(diretorio, "a") as arquivo:
-            arquivo.write(f"{nome},{nota}\n")  # Usando vírgula como separador
-        return True
-    except Exception as e:
-        print(f"Ocorreu um erro ao cadastrar o aluno: {e}")
-        return False
+    Representa um aluno com nome e nota.
 
-def ler_alunos() -> list:
+    Attributes:
+        nome (str): Nome do aluno.
+        nota (float): Nota do aluno.
     """
-    Lê todos os alunos do arquivo CSV.
-    args: None
-    retorno: uma lista contendo todas as linhas do arquivo
+
+    def __init__(self, nome: str, nota: float):
+        """
+        Inicializa uma nova instância de Aluno.
+
+        Args:
+            nome (str): O nome do aluno.
+            nota (float): A nota do aluno.
+        """
+        self.nome = nome.strip().title()
+        self.nota = float(nota)
+
+    def to_dict(self) -> Dict[str, float]:
+        """
+        Retorna o aluno como um dicionário com nome e nota.
+
+        Returns:
+            dict: Um dicionário {nome: nota}.
+        """
+        return {self.nome: self.nota}
+
+    def __str__(self) -> str:
+        """
+        Representação em string do aluno no formato CSV.
+
+        Returns:
+            str: Nome e nota separados por vírgula.
+        """
+        return f"{self.nome},{self.nota:.1f}"
+
+
+class GerenciadorAlunos:
     """
-    if os.path.exists(diretorio):
+    Classe responsável pelo gerenciamento de alunos e persistência dos dados.
+
+    Attributes:
+        csv_path (Path): Caminho do arquivo CSV.
+        json_path (Path): Caminho do arquivo JSON.
+        txt_path (Path): Caminho do arquivo TXT.
+        alunos (Dict[str, float]): Dicionário com os dados dos alunos.
+    """
+
+    def __init__(self, base_dir: Path):
+        """
+        Inicializa o gerenciador e carrega os dados existentes.
+
+        Args:
+            base_dir (Path): Diretório base onde os arquivos serão armazenados.
+        """
+        self.csv_path = base_dir / "alunos.csv"
+        self.json_path = base_dir / "alunos.json"
+        self.txt_path = base_dir / "alunos.txt"
+        self.alunos: Dict[str, float] = self._carregar()
+
+    def _carregar(self) -> Dict[str, float]:
+        """
+        Carrega os dados dos alunos a partir do arquivo CSV, se existir.
+
+        Returns:
+            dict: Dicionário com os dados dos alunos.
+        """
+        if self.csv_path.exists():
+            try:
+                with open(self.csv_path, "r") as f:
+                    return {
+                        nome: float(nota)
+                        for nome, nota in (linha.strip().split(",") for linha in f)
+                    }
+            except Exception as e:
+                print(f"Erro ao carregar CSV: {e}")
+        return {}
+
+    def salvar(self) -> None:
+        """
+        Salva os dados dos alunos nos formatos CSV, TXT e JSON.
+        """
         try:
-            with open(diretorio, "r") as arquivo:
-                linhas = arquivo.readlines()
-            return linhas
+            with open(self.csv_path, "w") as f_csv, open(
+                self.txt_path, "w"
+            ) as f_txt, open(self.json_path, "w") as f_json:
+
+                for nome, nota in self.alunos.items():
+                    linha = f"{nome},{nota:.1f}\n"
+                    f_csv.write(linha)
+                    f_txt.write(f"{nome} tem nota {nota:.1f}\n")
+
+                json.dump(self.alunos, f_json, indent=4)
+
         except Exception as e:
-            print(f"Ocorreu um erro ao ler os alunos: {e}")
-            return []
-    else:
-        print(f"O arquivo '{diretorio}' não existe.")
-        return []
+            print(f"Erro ao salvar os arquivos: {e}")
 
+    def cadastrar(self, aluno: Aluno) -> bool:
+        """
+        Cadastra ou atualiza um aluno no dicionário e salva os dados.
 
-def ler_aluno(nome: str) -> str:
-    """
-    Lê um aluno específico do arquivo CSV.
-    args: nome: o nome do aluno
-    retorno: uma string contendo a linha do aluno ou mensagem de não encontrado
-    """
-    if os.path.exists(diretorio):
-        try:
-            with open(diretorio, "r") as arquivo:
-                for linha in arquivo:
-                    if linha.startswith(nome + ","):
-                        return (
-                            linha.strip()
-                        )  # Retorna a linha do aluno sem espaços extras
-        except Exception as e:
-            print(f"Ocorreu um erro ao ler o aluno: {e}")
-    return "Aluno não encontrado."
+        Args:
+            aluno (Aluno): Instância da classe Aluno.
 
-def remover_aluno(nome: str) -> bool:
-    """
-    Remove um aluno específico do arquivo CSV.
-    args: nome: o nome do aluno
-    retorno: True se o aluno foi removido com sucesso, False caso contrário
-    """
-    try:
-        if os.path.exists(diretorio):
-            with open(diretorio, "r") as arquivo:
-                linhas = arquivo.readlines()
-            with open(diretorio, "w") as arquivo:
-                for linha in linhas:
-                    if not linha.startswith(nome + ","):
-                        arquivo.write(linha)
+        Returns:
+            bool: True se o cadastro foi bem-sucedido.
+        """
+        self.alunos[aluno.nome] = aluno.nota
+        self.salvar()
+        return True
+
+    def remover(self, nome: str) -> bool:
+        """
+        Remove um aluno pelo nome.
+
+        Args:
+            nome (str): Nome do aluno a ser removido.
+
+        Returns:
+            bool: True se o aluno foi removido, False caso contrário.
+        """
+        if nome in self.alunos:
+            del self.alunos[nome]
+            self.salvar()
             return True
-        else:
-            print(f"O arquivo '{diretorio}' não existe.")
-            return False
-    except Exception as e:
-        print(f"Ocorreu um erro ao remover o aluno: {e}")
         return False
 
-def alterar_nota_aluno(nome: str, nova_nota: float) -> bool:
-    """Altera a nota de um aluno específico no arquivo CSV.    args: nome: o nome do aluno, nova_nota: a nova nota do aluno
-    retorno: True se a nota foi alterada com sucesso, False caso contrário"""
-    encontrou = False
-    try:
-        if os.path.exists(diretorio):
-            with open(diretorio, "r") as arquivo:
-                linhas = arquivo.readlines()
-            with open(diretorio, "w") as arquivo:
-                for linha in linhas:
-                    if linha.startswith(nome + ","):
-                        arquivo.write(f"{nome},{nova_nota}\n")
-                        encontrou = True
-                    else:
-                        arquivo.write(linha)
-            return encontrou
-        else:
-            print(f"O arquivo '{diretorio}' não existe.")
-            return False
-    except Exception as e:
-        print(f"Ocorreu um erro ao alterar a nota do aluno: {e}")
+    def alterar_nota(self, nome: str, nova_nota: float) -> bool:
+        """
+        Altera a nota de um aluno existente.
+
+        Args:
+            nome (str): Nome do aluno.
+            nova_nota (float): Nova nota a ser atribuída.
+
+        Returns:
+            bool: True se a nota foi alterada, False caso o aluno não exista.
+        """
+        if nome in self.alunos:
+            self.alunos[nome] = nova_nota
+            self.salvar()
+            return True
         return False
+
+    def listar(self) -> List[str]:
+        """
+        Lista todos os alunos cadastrados.
+
+        Returns:
+            list: Lista de strings no formato "nome,nota".
+        """
+        return [f"{nome},{nota:.1f}" for nome, nota in self.alunos.items()]
+
+    def buscar(self, nome: str) -> str:
+        """
+        Busca um aluno pelo nome.
+
+        Args:
+            nome (str): Nome do aluno.
+
+        Returns:
+            str: Informação do aluno no formato "nome,nota" ou mensagem de erro.
+        """
+        if nome in self.alunos:
+            return f"{nome},{self.alunos[nome]:.1f}"
+        return "Aluno não encontrado."
 
 
 if __name__ == "__main__":
-    print(cadastrar_alunos("Raphael", 8.0))
-    print(ler_aluno("Raphael"))
-    print(ler_alunos())
-    print(remover_aluno("Raphael"))
-    print(ler_alunos())
-    print(cadastrar_alunos("Raphael", 7.0))
-    print(alterar_nota_aluno("Raphael", 10.0))
-    print(ler_alunos())
+    base_dir = Path(__file__).parent
+    gerenciador = GerenciadorAlunos(base_dir)
+
+    print("Cadastrando:", gerenciador.cadastrar(Aluno("Raphael", 8.0)))
+    print("Lendo:", gerenciador.buscar("Raphael"))
+    print("Lista completa:", gerenciador.listar())
+    print("Removendo:", gerenciador.remover("Raphael"))
+    print("Lista após remoção:", gerenciador.listar())
+    print("Novo cadastro:", gerenciador.cadastrar(Aluno("Raphael", 7.0)))
+    print("Alterando nota:", gerenciador.alterar_nota("Raphael", 10.0))
+    print("Lista final:", gerenciador.listar())
