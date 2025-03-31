@@ -1,1 +1,3 @@
-Raphael tem nota 10.0
+Caroline tem nota 10.0
+Raphael tem nota 8.5
+Vanessa tem nota 7.0
