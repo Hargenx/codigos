@@ -1,0 +1,43 @@
+@startuml SistemaBancarioSimplificado
+
+title Diagrama de Classes - Sistema Bancário Simplificado
+
+class Cliente {
+  - nome: String
+  - cpf: String
+  + getNome(): String
+  + getCpf(): String
+}
+
+abstract class Conta {
+  - numero: String
+  - saldo: float
+  - cliente: Cliente
+  + depositar(valor: float): void
+  + sacar(valor: float): void
+  + transferir(destino: Conta, valor: float): void
+}
+
+class ContaCorrente {
+  - limite: float
+}
+
+class ContaPoupanca {
+  - taxaJuros: float
+}
+
+class Banco {
+  - clientes: List<Cliente>
+  - contas: List<Conta>
+  + adicionarCliente(cliente: Cliente): void
+  + criarConta(cliente: Cliente, tipo: String): void
+  + buscarConta(numero: String): Conta
+}
+
+Cliente "1" o-- "0..*" Conta : possui >
+Conta <|-- ContaCorrente
+Conta <|-- ContaPoupanca
+Banco o-- "0..*" Cliente
+Banco o-- "0..*" Conta
+
+@enduml
