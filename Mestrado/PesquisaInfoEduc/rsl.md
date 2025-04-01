@@ -45,7 +45,7 @@
 
 ### 4. Estratégia de Busca
 
-- **Bases de dados:** Selecione bases relevantes, como Web of Science, Scopus, IEEE Xplore, Google Scholar, entre outras.
+- **Bases de dados:** Selecione bases relevantes, como Web of Science, Scopus, IEEE Xplore, Google Scholar, entre outras. Ver ACMlibrary
 - **Palavras-chave:** Crie strings de busca combinando termos como "ABM", "Agent-Based Modeling", "simulação de mercado", "mercado imobiliario", "microestrutura de mercado", etc.
 - **Documentação:** Anote todas as estratégias utilizadas para que a revisão seja reprodutível.
 
