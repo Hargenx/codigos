@@ -1,0 +1,16 @@
+@startuml Produto
+interface Produto {
+    +getNome(): String
+    +getPreco(): double
+}
+
+class ProdutoSimples implements Produto
+class ProdutoComposto implements Produto {
+    -itens: List<Produto>
+    +adicionar(p: Produto): void
+}
+
+ProdutoComposto o-- Produto
+ProdutoSimples ..|> Produto
+ProdutoComposto ..|> Produto
+@enduml

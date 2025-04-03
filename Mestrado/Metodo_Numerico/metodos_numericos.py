@@ -7,43 +7,57 @@ A = np.array([
     [1, 2, 4]
 ], dtype=float)
 
-# Função para aplicar a Regra de Sarrus com passo a passo
-def sarrus_step_by_step(matrix):
-    a11, a12, a13 = matrix[0]
-    a21, a22, a23 = matrix[1]
-    a31, a32, a33 = matrix[2]
+def mostrar_determinante(matrix):
+    shape = matrix.shape
+    print("=== DETALHAMENTO DO DETERMINANTE ===\n")
 
-    # Diagonais principais (↘)
-    dp1 = a11 * a22 * a33
-    dp2 = a12 * a23 * a31
-    dp3 = a13 * a21 * a32
-    soma_principais = dp1 + dp2 + dp3
+    if shape == (2, 2):
+        a11, a12 = matrix[0]
+        a21, a22 = matrix[1]
+        det = a11 * a22 - a12 * a21
+        print("Regra para matriz 2x2:\n")
+        print(f"det(A) = {a11}*{a22} - {a12}*{a21} = {a11*a22} - {a12*a21} = {det}\n")
+        return det
 
-    # Diagonais secundárias (↙)
-    ds1 = a13 * a22 * a31
-    ds2 = a11 * a23 * a32
-    ds3 = a12 * a21 * a33
-    soma_secundarias = ds1 + ds2 + ds3
+    elif shape == (3, 3):
+        a11, a12, a13 = matrix[0]
+        a21, a22, a23 = matrix[1]
+        a31, a32, a33 = matrix[2]
 
-    resultado = soma_principais - soma_secundarias
+        dp1 = a11 * a22 * a33
+        dp2 = a12 * a23 * a31
+        dp3 = a13 * a21 * a32
+        soma_principais = dp1 + dp2 + dp3
 
-    passos = {
-        "diagonais_principais": {
-            "dp1": f"{a11}*{a22}*{a33} = {dp1}",
-            "dp2": f"{a12}*{a23}*{a31} = {dp2}",
-            "dp3": f"{a13}*{a21}*{a32} = {dp3}",
-            "soma": f"{dp1} + {dp2} + {dp3} = {soma_principais}"
-        },
-        "diagonais_secundarias": {
-            "ds1": f"{a13}*{a22}*{a31} = {ds1}",
-            "ds2": f"{a11}*{a23}*{a32} = {ds2}",
-            "ds3": f"{a12}*{a21}*{a33} = {ds3}",
-            "soma": f"{ds1} + {ds2} + {ds3} = {soma_secundarias}"
-        },
-        "resultado": f"{soma_principais} - {soma_secundarias} = {resultado}"
-    }
+        ds1 = a13 * a22 * a31
+        ds2 = a11 * a23 * a32
+        ds3 = a12 * a21 * a33
+        soma_secundarias = ds1 + ds2 + ds3
 
-    return passos
+        resultado = soma_principais - soma_secundarias
+
+        print("Regra de Sarrus para matriz 3x3:\n")
+        print("↘ Diagonais principais:")
+        print(f"dp1: {a11}*{a22}*{a33} = {dp1}")
+        print(f"dp2: {a12}*{a23}*{a31} = {dp2}")
+        print(f"dp3: {a13}*{a21}*{a32} = {dp3}")
+        print(f"Soma principais: {dp1} + {dp2} + {dp3} = {soma_principais}\n")
+
+        print("↙ Diagonais secundárias:")
+        print(f"ds1: {a13}*{a22}*{a31} = {ds1}")
+        print(f"ds2: {a11}*{a23}*{a32} = {ds2}")
+        print(f"ds3: {a12}*{a21}*{a33} = {ds3}")
+        print(f"Soma secundárias: {ds1} + {ds2} + {ds3} = {soma_secundarias}\n")
+
+        print(f"Determinante = {soma_principais} - {soma_secundarias} = {resultado}\n")
+        return resultado
+
+    else:
+        det = np.linalg.det(matrix)
+        print("Matriz de ordem diferente de 2x2 ou 3x3. Usando numpy.linalg.det:")
+        print(f"Determinante ≈ {det:.4f}\n")
+        return det
+
 
 # Função para fatoração de Cholesky com passo a passo
 def cholesky_step_by_step(A):
@@ -66,18 +80,7 @@ def cholesky_step_by_step(A):
     
     return G, explicacao
 
-# Executar Sarrus
-sarrus_explicado = sarrus_step_by_step(A)
-
-print("=== REGRA DE SARRUS ===\n")
-for passo, descricao in sarrus_explicado.items():
-    print(f"{passo.upper()}:\n")
-    if isinstance(descricao, dict):
-        for chave, valor in descricao.items():
-            print(f"{chave}: {valor}")
-    else:
-        print(descricao)
-    print("\n")
+det = mostrar_determinante(A)
 
 # Executar Cholesky
 try:

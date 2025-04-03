@@ -1,0 +1,20 @@
+@startuml Messageria
+interface CanalEnvio {
+    +enviar(texto: String): void
+}
+
+abstract class Mensagem {
+    -canal: CanalEnvio
+    +Mensagem(canal: CanalEnvio)
+    +enviarMensagem(texto: String): void
+}
+
+class MensagemSimples extends Mensagem
+class MensagemUrgente extends Mensagem
+
+Mensagem --> CanalEnvio
+MensagemSimples --|> Mensagem
+MensagemUrgente --|> Mensagem
+CanalEnvio <|.. Email
+CanalEnvio <|.. SMS
+@enduml

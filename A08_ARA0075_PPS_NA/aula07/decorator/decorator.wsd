@@ -1,0 +1,20 @@
+@startuml Cafezin
+interface Bebida {
+    +getDescricao(): String
+    +getPreco(): double
+}
+
+class Cafe implements Bebida
+
+abstract class AdicionalDecorator implements Bebida {
+    -bebida: Bebida
+}
+
+class Leite extends AdicionalDecorator
+class Chocolate extends AdicionalDecorator
+
+AdicionalDecorator --> Bebida
+Leite --|> AdicionalDecorator
+Chocolate --|> AdicionalDecorator
+Cafe ..|> Bebida
+@enduml

@@ -1,0 +1,17 @@
+@startuml MetodoPagamento
+interface Pagamento {
+    +pagar(valor: double): void
+}
+
+class SistemaAntigo {
+    +realizarPagamento(valor: double): void
+}
+
+class PagamentoAdapter implements Pagamento {
+    -sistema: SistemaAntigo
+    +pagar(valor: double): void
+}
+
+PagamentoAdapter --> SistemaAntigo
+Pagamento <|.. PagamentoAdapter
+@enduml
