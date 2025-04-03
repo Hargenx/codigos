@@ -2,10 +2,10 @@ import numpy as np
 
 # Definir a matriz A
 A = np.array([
-    [4, -2, -1],
-    [-2, 3, 3],
-    [-1, 3, 4]
-], dtype=float)  # garante que A seja float
+    [6, 3, 1],
+    [3, 5, 2],
+    [1, 2, 4]
+], dtype=float)
 
 # Função para aplicar a Regra de Sarrus com passo a passo
 def sarrus_step_by_step(matrix):
@@ -85,14 +85,25 @@ try:
     print("=== FATORAÇÃO DE CHOLESKY (A = GᵀG) ===\n")
     for chave, valor in explicacao_cholesky.items():
         print(f"{chave}: {valor}")
+
     print("\nMatriz G (triangular superior):\n", G)
-    print("\nProva real (GᵀG):\n", G.T @ G)
-    print("\nMatriz original A:\n", A)
-    # Mostrar a matriz L (inferior)
+
+    # Matriz L (triangular inferior)
     L = G.T
     print("\nMatriz L (triangular inferior):\n", L)
-    # Verificação alternativa: A = LLᵀ
-    print("\nVerificação A = L·Lᵀ:\n", L @ L.T)
+
+    # Provas reais
+    print("\nProva real (GᵀG):\n", G.T @ G)
+    print("Prova real (LLᵀ):\n", L @ L.T)
+    print("\nMatriz original A:\n", A)
+
+    # Determinante via Cholesky
+    detG = np.prod(np.diag(G))
+    detA = detG ** 2
+    print(f"\nDeterminante via Cholesky:\n")
+    print(f"det(G) = {detG}")
+    print(f"det(A) = (det(G))² = ({detG})² = {detA}")
+
 except ValueError as e:
     print("\n❌ Erro na fatoração de Cholesky:")
     print(e)
