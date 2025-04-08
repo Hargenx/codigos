@@ -1,4 +1,3 @@
-from typing import List, Dict
 from pathlib import Path
 from Aluno import Aluno
 from GerenciadorAlunos import GerenciadorAlunos

@@ -1,12 +1,12 @@
 import numpy as np
 
 # Definir a matriz A
-A = np.array([
-    [2, -1, 0],
-    [-1, 2, -1],
-    [-1, 0, 2]
-], dtype=float)
+A = np.array([[2, -1, 0], [-1, 2, -1], [0, -1, 2]], dtype=float)
 
+
+# =============================
+# Função para detalhamento do determinante
+# =============================
 def mostrar_determinante(matrix):
     shape = matrix.shape
     print("=== DETALHAMENTO DO DETERMINANTE ===\n")
@@ -24,6 +24,18 @@ def mostrar_determinante(matrix):
         a21, a22, a23 = matrix[1]
         a31, a32, a33 = matrix[2]
 
+        # Menor principal de ordem 1
+        print("1️⃣ Menor principal de ordem 1:\n")
+        print(f"det(A1) = {a11}\n")
+
+        # Menor principal de ordem 2
+        print("2️⃣ Menor principal de ordem 2:\n")
+        det2 = a11 * a22 - a12 * a21
+        print(f"det(A2) = {a11}*{a22} - {a12}*{a21} = {a11*a22} - {a12*a21} = {det2}\n")
+
+        # Regra de Sarrus (ordem 3)
+        print("3️⃣ Regra de Sarrus para matriz 3x3:\n")
+
         dp1 = a11 * a22 * a33
         dp2 = a12 * a23 * a31
         dp3 = a13 * a21 * a32
@@ -36,7 +48,6 @@ def mostrar_determinante(matrix):
 
         resultado = soma_principais - soma_secundarias
 
-        print("Regra de Sarrus para matriz 3x3:\n")
         print("↘ Diagonais principais:")
         print(f"dp1: {a11}*{a22}*{a33} = {dp1}")
         print(f"dp2: {a12}*{a23}*{a31} = {dp2}")
@@ -49,7 +60,10 @@ def mostrar_determinante(matrix):
         print(f"ds3: {a12}*{a21}*{a33} = {ds3}")
         print(f"Soma secundárias: {ds1} + {ds2} + {ds3} = {soma_secundarias}\n")
 
-        print(f"Determinante = {soma_principais} - {soma_secundarias} = {resultado}\n")
+        print(
+            f"Determinante final = {soma_principais} - {soma_secundarias} = {resultado}\n"
+        )
+
         return resultado
 
     else:
@@ -59,7 +73,9 @@ def mostrar_determinante(matrix):
         return det
 
 
-# Função para fatoração de Cholesky com passo a passo
+# =============================
+# Função para fatoração de Cholesky com passo a passo da matriz G (triangular superior)
+# =============================
 def cholesky_step_by_step(A):
     n = A.shape[0]
     G = np.zeros((n, n), dtype=float)
@@ -71,39 +87,55 @@ def cholesky_step_by_step(A):
             if i == j:
                 valor = A[i][i] - soma
                 if valor <= 0:
-                    raise ValueError(f"Não é possível aplicar Cholesky: valor negativo sob raiz quadrada (linha {i+1})")
+                    raise ValueError(
+                        f"Não é possível aplicar Cholesky: valor negativo sob raiz quadrada (linha {i+1})"
+                    )
                 G[i][i] = np.sqrt(valor)
                 explicacao[f"g{i+1}{i+1}"] = f"sqrt({A[i][i]} - {soma}) = {G[i][i]}"
             else:
-                G[i][j] = (A[i][j] - soma) / G[i][i]
-                explicacao[f"g{i+1}{j+1}"] = f"({A[i][j]} - {soma}) / {G[i][i]} = {G[i][j]}"
-    
+                G[i][j] = (A[j][i] - soma) / G[i][i]
+                explicacao[f"g{i+1}{j+1}"] = (
+                    f"({A[j][i]} - {soma}) / {G[i][i]} = {G[i][j]}"
+                )
+
     return G, explicacao
 
+
+# =============================
+# Execução principal
+# =============================
+
+# Mostra determinante com todos os passos
 det = mostrar_determinante(A)
 
 # Executar Cholesky
 try:
     G, explicacao_cholesky = cholesky_step_by_step(A)
-    print("=== FATORAÇÃO DE CHOLESKY (A = GᵀG) ===\n")
+
+    print("=== FATORAÇÃO DE CHOLESKY - MATRIZ G (Triangular Superior) ===\n")
     for chave, valor in explicacao_cholesky.items():
         print(f"{chave}: {valor}")
 
     print("\nMatriz G (triangular superior):\n", G)
 
-    # Matriz L (triangular inferior)
+    # Matriz L (triangular inferior) como a transposta de G
     L = G.T
-    print("\nMatriz L (triangular inferior):\n", L)
+    print("\n=== MATRIZ L (Triangular Inferior) ===")
+    print(
+        "Nota: Como estamos calculando G, obtemos L como a transposta de G (L = Gᵀ).\n"
+    )
+    print("Matriz L (triangular inferior):\n", L)
 
     # Provas reais
-    print("\nProva real (GᵀG):\n", G.T @ G)
-    print("Prova real (LLᵀ):\n", L @ L.T)
+    print("\n=== PROVAS REAIS ===\n")
+    print("Prova real (Gᵀ · G):\n", G.T @ G)
+    print("Prova real (L · Lᵀ):\n", L @ L.T)
     print("\nMatriz original A:\n", A)
 
     # Determinante via Cholesky
     detG = np.prod(np.diag(G))
-    detA = detG ** 2
-    print("\nDeterminante via Cholesky:\n")
+    detA = detG**2
+    print("\nDeterminante via Cholesky:")
     print(f"det(G) = {detG}")
     print(f"det(A) = (det(G))² = ({detG})² = {detA}")
 
