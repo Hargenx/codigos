@@ -1,0 +1,18 @@
+@startuml Fly
+interface EmailTemplate {
+    +render(String conteudo): void
+}
+
+class TemplateHTML implements EmailTemplate {
+    -layout: String
+    +render(conteudo: String): void
+}
+
+class TemplateFactory {
+    -templates: Map<String, TemplateHTML>
+    +getTemplate(layout: String): TemplateHTML
+}
+
+TemplateFactory --> TemplateHTML
+TemplateHTML ..|> EmailTemplate
+@enduml

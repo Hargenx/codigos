@@ -1,0 +1,24 @@
+@startuml Facade
+class Estoque {
+    +verificarDisponibilidade(): boolean
+}
+
+class Pagamento {
+    +processarPagamento(): void
+}
+
+class Envio {
+    +enviar(): void
+}
+
+class LojaFacade {
+    -estoque: Estoque
+    -pagamento: Pagamento
+    -envio: Envio
+    +comprarFilme(): void
+}
+
+LojaFacade --> Estoque
+LojaFacade --> Pagamento
+LojaFacade --> Envio
+@enduml

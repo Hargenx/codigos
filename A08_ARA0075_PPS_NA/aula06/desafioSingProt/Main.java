@@ -1,4 +1,4 @@
-package A08_ARA0075_PPS_NA.aula06.desafioSingProt;
+package desafioSingProt;
 
 public class Main {
     public static void main(String[] args) {
