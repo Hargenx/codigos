@@ -1,9 +1,9 @@
-from agent import AgenteBase
-from world import MundoBase
+from abm.agent import AgenteBase
+from abm.world import MundoBase
 import random
 
 class AgenteFinanceiro(AgenteBase):
-    def __init__(self, id_agente, saldo_inicial):
+    def __init__(self, id_agente, saldo_inicial=1000):
         super().__init__(id_agente)
         self.recursos['saldo'] = saldo_inicial
         self.recursos['ativos'] = {}
@@ -12,7 +12,6 @@ class AgenteFinanceiro(AgenteBase):
         self.decisao = random.choice(["comprar", "vender", "nada"])
 
     def agir(self, ambiente):
-        # Exemplo simplificado
         if self.decisao == "comprar":
             ambiente.recursos['compras'] = ambiente.recursos.get('compras', 0) + 1
         elif self.decisao == "vender":
@@ -20,9 +19,6 @@ class AgenteFinanceiro(AgenteBase):
 
 class MundoMercado(MundoBase):
     def atualizar(self):
-        # Atualiza estado geral
-        total_compras = self.recursos.get('compras', 0)
-        total_vendas = self.recursos.get('vendas', 0)
-        print(f"Ciclo {self.tempo}: Compras: {total_compras}, Vendas: {total_vendas}")
+        print(f"[Ciclo {self.tempo}] Compras: {self.recursos.get('compras', 0)}, Vendas: {self.recursos.get('vendas', 0)}")
         self.recursos['compras'] = 0
         self.recursos['vendas'] = 0

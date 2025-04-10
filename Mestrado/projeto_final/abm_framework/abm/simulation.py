@@ -1,12 +1,12 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-def processar_agente(agente, ambiente):
+def processar_agente(agente: 'AgenteBase', ambiente: 'MundoBase') -> int:
     agente.decidir(ambiente)
     agente.agir(ambiente)
     return agente.id  # Para log, se desejar
 
 class Simulacao:
-    def __init__(self, mundo, ciclos=100, paralelo=True, max_workers=None):
+    def __init__(self, mundo: 'MundoBase', ciclos=100: int, paralelo=True: bool, max_workers: int = None) -> None:
         self.mundo = mundo
         self.ciclos = ciclos
         self.paralelo = paralelo
@@ -25,7 +25,7 @@ class Simulacao:
         self.mundo.atualizar()
         self.mundo.coletar_dados()
 
-    def executar(self):
+    def executar(self) -> None:
         for _ in range(self.ciclos):
             self.executar_ciclo()
 
