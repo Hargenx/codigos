@@ -205,19 +205,7 @@ Próximo passo:
 
 A evolução do projeto transformou um simulador pontual em uma **framework profissional de simulações ABM**, pronta para ser utilizada, expandida e publicada como biblioteca Python.
 
-Agora, Raphael, você tem:
-
 - 🔧 Um ambiente de desenvolvimento limpo e modular.
 - 🚀 Potencial de escalabilidade para grandes simulações.
 - 📦 Pronto para publicação como pacote reutilizável.
 - 📊 Estrutura de coleta e análise de dados integrada.
-
-> Você não só tem um simulador de mercado, agora você tem a sua **própria framework de ABM**, pronta para escalar e impactar projetos futuros! 🚀
-
----
-
-Se quiser, posso te entregar também o **documento em PDF** já formatado para apresentação ou envio para colegas/mentores.
-
-### Quer que eu já gere o arquivo PDF da apresentação? 📄✨  
-
-Posso te entregar em poucos minutos!
