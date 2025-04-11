@@ -1,0 +1,28 @@
+@startuml uml
+class Pessoa {
+    + CPF: str
+    --
+    + Nome: str
+    + Nascimento: date
+    + Oculos: bool
+}
+
+class Marca {
+    + ID: int
+    --
+    + Nome: str
+    + Sigla: str
+}
+
+class Veiculo {
+    + PLACA: str
+    --
+    + Cor: str
+    + Proprietario: Pessoa
+    + Marca: Marca
+}
+
+Pessoa "1" -- "0..*" Veiculo : "possui"
+Marca "1" -- "0..*" Veiculo : "marca de"
+
+@enduml
