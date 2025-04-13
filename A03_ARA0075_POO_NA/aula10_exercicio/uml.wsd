@@ -1,0 +1,53 @@
+@startuml Exercicio
+
+interface OperacaoEstoque {
+    +realizarOperacao(): void
+}
+
+abstract class ItemEstoque {
+    -id: int
+    -nome: String
+    -quantidade: int
+    -valor: double
+    +getId(): int
+    +getNome(): String
+    +getQuantidade(): int
+    +getValor(): double
+    +setQuantidade(qtd: int): void
+    +setValor(valor: double): void
+    +exibirInformacoes(): void
+}
+
+class Produto extends ItemEstoque implements OperacaoEstoque {
+    +Produto(id: int, nome: String, quantidade: int, valor: double)
+    +realizarOperacao(): void
+    +adicionarEstoque(qtd: int): void
+    +retirarEstoque(qtd: int): void
+}
+
+class ProdutoPerecivel extends Produto {
+    +ProdutoPerecivel(id: int, nome: String, quantidade: int, valor: double)
+    +exibirInformacoes(): void
+}
+
+class ProdutoNaoPerecivel extends Produto {
+    +ProdutoNaoPerecivel(id: int, nome: String, quantidade: int, valor: double)
+    +exibirInformacoes(): void
+}
+
+class MovimentacaoEstoque extends Thread {
+    -produto: Produto
+    -quantidade: int
+    -tipoOperacao: String
+    +MovimentacaoEstoque(produto: Produto, quantidade: int, tipoOperacao: String)
+    +run(): void
+}
+
+OperacaoEstoque <|.. Produto
+ItemEstoque <|-- Produto
+Produto <|-- ProdutoPerecivel
+Produto <|-- ProdutoNaoPerecivel
+Thread <|-- MovimentacaoEstoque
+MovimentacaoEstoque --> Produto
+
+@enduml

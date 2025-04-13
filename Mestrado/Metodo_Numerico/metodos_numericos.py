@@ -2,9 +2,9 @@ import numpy as np
 
 # Definir a matriz A
 A = np.array([
-    [2, -1, 0],
-    [-1, 2, -1],
-    [-1, 0, 2]
+    [6, 2, -2],
+    [2, 5, 1],
+    [-2, 1, 4]
 ], dtype=float)
 
 def mostrar_determinante(matrix):

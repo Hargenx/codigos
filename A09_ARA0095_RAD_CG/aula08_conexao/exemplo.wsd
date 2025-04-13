@@ -1,0 +1,27 @@
+@startuml mvc
+class Book {
+    - title: str
+    - author: str
+    - year: int
+    + __init__(title: str, author: str, year: int)
+    + __str__(): str
+}
+
+class View {
+    + show_menu(): int
+    + get_book_info(): Book
+    + show_books(books: list): void
+    + show_message(message: str): void
+}
+
+class Controller {
+    - books: list
+    + run(): void
+    + add_book(): void
+    + list_books(): void
+    + remove_book(): void
+}
+
+Book <.. Controller : "uses"
+View <.. Controller : "uses"
+@enduml

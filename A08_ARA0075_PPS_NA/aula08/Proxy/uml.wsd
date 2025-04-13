@@ -1,0 +1,20 @@
+@startuml Proxy
+interface CotacaoService {
+    +double getCotacaoDolar(): double
+}
+
+class CotacaoAPI implements CotacaoService {
+    +getCotacaoDolar(): double
+}
+
+class CotacaoProxy implements CotacaoService {
+    -cache: double
+    -ultimaConsulta: LocalDateTime
+    -cotacaoReal: CotacaoAPI
+    +getCotacaoDolar(): double
+}
+
+CotacaoProxy --> CotacaoAPI
+CotacaoAPI ..|> CotacaoService
+CotacaoProxy ..|> CotacaoService
+@enduml
