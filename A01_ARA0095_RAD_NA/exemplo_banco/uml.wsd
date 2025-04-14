@@ -1,0 +1,35 @@
+@startuml loca
+
+class Pessoa {
+    - cpf: str
+    - nome: str
+    - nascimento: date
+    - oculos: bool
+    --
+    + __init__(cpf: str, nome: str, nascimento: date, oculos: bool): None
+    + __str__() : str
+}
+
+class Marca {
+    - id: int
+    - nome: str
+    - sigla: str
+    --
+    + __init__(id: int, nome: str, sigla: str): None
+    + __str__() : str
+}
+
+class Veiculo {
+    - placa: str
+    - cor: str
+    - proprietario_cpf: str
+    - marca_id: int
+    --
+    + __init__(placa: str, cor: str, proprietario_cpf: str, marca_id: int): None
+    + __str__() : str
+}
+
+Pessoa "1" -- "0..*" Veiculo : "possui"
+Marca "1" -- "0..*" Veiculo : "marca de"
+
+@enduml

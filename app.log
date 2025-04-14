@@ -1,0 +1,45 @@
+2025-04-13 23:15:48,684 - ERROR - Erro ao criar banco de dados: 2003 (HY000): Can't connect to MySQL server on 'localhost:3306' (10061)
+2025-04-13 23:16:04,205 - ERROR - Erro ao criar banco de dados: connection to server at "localhost" (::1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused (0x0000274D/10061)
+	Is the server running on that host and accepting TCP/IP connections?
+
+2025-04-13 23:16:12,052 - INFO - Conectado ao banco de dados: sqlite
+2025-04-13 23:16:12,082 - INFO - Tabelas criadas com sucesso.
+2025-04-13 23:25:26,532 - INFO - Conectado ao banco de dados: sqlite
+2025-04-13 23:25:26,539 - INFO - Tabelas criadas com sucesso.
+2025-04-13 23:25:26,540 - INFO - Conectado ao banco de dados: sqlite
+2025-04-13 23:26:00,955 - INFO - Conectado ao banco de dados: sqlite
+2025-04-13 23:26:00,955 - INFO - Tabelas criadas com sucesso.
+2025-04-13 23:26:00,956 - INFO - Conectado ao banco de dados: sqlite
+2025-04-13 23:26:00,956 - INFO - Tabelas criadas com sucesso.
+2025-04-13 23:26:04,532 - INFO - Consulta de veículos realizada com sucesso.
+2025-04-13 23:26:31,133 - INFO - Pessoa inserida com sucesso.
+2025-04-13 23:26:31,133 - INFO - Pessoa cadastrada: Raphael (CPF: 123456) - Nasc: 1984-07-26 - Óculos: Sim
+2025-04-13 23:26:46,830 - INFO - Marca inserida com sucesso.
+2025-04-13 23:26:46,830 - INFO - Marca cadastrada: Fiat (FIA)
+2025-04-14 00:02:46,047 - INFO - Conectado ao banco SQLite.
+2025-04-14 00:02:46,075 - INFO - Tabelas criadas com sucesso.
+2025-04-14 00:04:38,749 - INFO - Conectado ao banco SQLite.
+2025-04-14 00:04:38,750 - INFO - Tabelas criadas com sucesso.
+2025-04-14 00:04:38,750 - INFO - Controlador inicializado com sucesso.
+2025-04-14 00:05:10,136 - INFO - Pessoa inserida com sucesso.
+2025-04-14 00:05:10,136 - INFO - Pessoa cadastrada: Raphael (CPF: 123456) - Nasc: 1984-07-26 - Óculos: Sim
+2025-04-14 00:05:20,916 - INFO - Marca inserida com sucesso.
+2025-04-14 00:05:20,916 - INFO - Marca cadastrada: Fiat (FI)
+2025-04-14 00:06:54,848 - INFO - Veículo inserido com sucesso.
+2025-04-14 00:06:54,848 - INFO - Veículo cadastrado: Placa: LRW1I27 - Cor: Cinza - Proprietário CPF: 123456 - Marca ID: 1
+2025-04-14 00:07:05,789 - ERROR - Erro ao exportar veículos para CSV: [Errno 2] No such file or directory: 'export/veiculos.csv'
+2025-04-14 00:13:30,827 - ERROR - Erro ao exportar veículos para CSV: [Errno 2] No such file or directory: 'export/veiculos.csv'
+2025-04-14 00:13:35,364 - INFO - Conectado ao banco SQLite.
+2025-04-14 00:13:35,364 - INFO - Tabelas criadas com sucesso.
+2025-04-14 00:13:35,364 - INFO - Controlador inicializado com sucesso.
+2025-04-14 00:13:50,523 - INFO - Exportação de veículos para CSV concluída com sucesso.
+2025-04-14 00:13:53,155 - INFO - Exportação de veículos para CSV concluída com sucesso.
+2025-04-14 00:15:51,440 - INFO - Conexão SQLite encerrada.
+2025-04-14 00:15:51,440 - INFO - Programa encerrado.
+2025-04-14 00:19:57,707 - INFO - Conectado ao banco SQLite.
+2025-04-14 00:19:57,707 - INFO - Tabelas criadas com sucesso.
+2025-04-14 00:19:57,707 - INFO - Controlador inicializado com sucesso.
+2025-04-14 00:43:39,115 - INFO - Conexão SQLite encerrada.
+2025-04-14 00:43:39,115 - INFO - Programa encerrado.
