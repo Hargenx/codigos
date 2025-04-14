@@ -4,6 +4,7 @@ import FlatListExemplo from './exemplos/FlatListExemplo';
 import SectionListExemplo from './exemplos/SectionListExemplo';
 import ScrollViewExemplo from './exemplos/ScrollViewExemplo';
 import CarouselExemplo from './exemplos/CarouselExemplo';
+import outro_exemplo from './exemplos/outro';
 import styles from './style/estilo';
 
 
@@ -22,6 +23,8 @@ export default function App() {
         return <ScrollViewExemplo voltaPara={() => setTelaAtual(null)} />;
       case 'Carousel':
         return <CarouselExemplo voltaPara={() => setTelaAtual(null)} />;
+      case 'Outro':
+        return <outro_exemplo voltaPara={() => setTelaAtual(null)} />;
       default:
 
         return (
@@ -33,6 +36,8 @@ export default function App() {
             <Button title="ScrollView Exemplo" onPress={() => navepaParaTela('ScrollView')} />
             <View style={styles.buttonSpacing} />
             <Button title="Carousel Exemplo" onPress={() => navepaParaTela('Carousel')} />
+            <View style={styles.buttonSpacing} />
+            <Button title="Outro Exemplo" onPress={() => navepaParaTela('Outro')} />
           </View>
         );
     }

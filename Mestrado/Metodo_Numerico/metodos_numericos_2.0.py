@@ -1,9 +1,8 @@
 import numpy as np
 
 # Definir a matriz A
-A = np.array([[9, -3, -6],
-              [-3, 5, 3], 
-              [-6, 3, 10]], dtype=float)
+A = np.array([[7, 3], 
+              [3, 5]], dtype=float)
 
 
 # =============================
