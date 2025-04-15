@@ -14,7 +14,7 @@ public class EnviadorEmailExecutor implements Runnable {
     public void run() {
         System.out.println("Enviando e-mail para: " + destinatario);
         try {
-            Thread.sleep(2000); // simula tempo de envio
+            Thread.sleep(4000); // simula tempo de envio
         } catch (InterruptedException e) {
             System.out.println("Erro ao enviar para: " + destinatario);
         }
