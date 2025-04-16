@@ -8,5 +8,7 @@ public class Main {
         kit.adicionar(mouse);
         kit.adicionar(teclado);
         System.out.println(kit.getNome() + " custa R$" + kit.getPreco());
+        System.out.println(mouse.getNome() + " custa R$" + mouse.getPreco());
+        System.out.println(teclado.getNome() + " custa R$" + teclado.getPreco());
     }
 }
