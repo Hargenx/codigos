@@ -1,0 +1,22 @@
+@startuml iterator diagrama
+interface Iterador {
+    +temProximo(): boolean
+    +proximo(): String
+}
+
+class Playlist {
+    -musicas: List<String>
+    +adicionarMusica(nome: String): void
+    +criarIterador(): Iterador
+}
+
+class PlaylistIterador implements Iterador {
+    -lista: List<String>
+    -pos: int
+    +temProximo(): boolean
+    +proximo(): String
+}
+
+Playlist --> PlaylistIterador : cria
+PlaylistIterador ..|> Iterador
+@enduml

@@ -1,0 +1,15 @@
+@startuml exemplo_comand
+interface Comando {
+    +executar(): void
+    +desfazer(): void
+}
+
+class AcenderLuz implements Comando
+class DesligarTV implements Comando
+
+class ControleRemoto {
+    -historico: Stack<Comando>
+    +executar(Comando): void
+    +desfazer(): void
+}
+@enduml

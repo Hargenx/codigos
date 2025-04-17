@@ -1,0 +1,19 @@
+@startuml verificador
+interface Middleware {
+    +processar(email: String, senha: String): boolean
+}
+
+abstract class VerificadorBase implements Middleware {
+    -proximo: Middleware
+    +linkarProximo(next: Middleware): Middleware
+    +processar(email, senha): boolean
+}
+
+class VerificaUsuario extends VerificadorBase
+class VerificaSenha extends VerificadorBase
+class VerificaPermissao extends VerificadorBase
+
+VerificadorBase <|-- VerificaUsuario
+VerificadorBase <|-- VerificaSenha
+VerificadorBase <|-- VerificaPermissao
+@enduml
