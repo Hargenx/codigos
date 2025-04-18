@@ -1,0 +1,23 @@
+@startuml mediator_uml
+
+left to right direction
+interface ChatSala {
+    +enviar(String mensagem, Usuario remetente): void
+    +registrarUsuario(Usuario usuario): void
+}
+
+class SalaConcreta implements ChatSala {
+    -usuarios: List<Usuario>
+}
+
+class Usuario {
+    -nome: String
+    -sala: ChatSala
+    +enviar(String mensagem): void
+    +receber(String mensagem): void
+}
+
+Usuario --> ChatSala : usa
+SalaConcreta --> Usuario : mantém
+ChatSala <|.. SalaConcreta
+@enduml
