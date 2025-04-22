@@ -19,7 +19,7 @@ Como os modelos ABM têm sido aplicados para simulações de investimentos no me
 
 **Critérios de Inclusão:**  
 
-- **Período de Publicação:** Últimos 10 a 15 anos.  
+- **Período de Publicação:** Últimos 10 a 5 anos.  
 - **Idioma:** Artigos em inglês e português.  
 - **Tipo de Publicação:** Artigos revisados por pares, anais de conferências, teses e dissertações relevantes.  
 - **Conteúdo:** Estudos que apresentem aplicações de ABM na simulação de investimentos e dinâmicas de mercado financeiro, incluindo análises de estratégias de investidores, precificação de ativos, e microestrutura de mercados financeiros.  
