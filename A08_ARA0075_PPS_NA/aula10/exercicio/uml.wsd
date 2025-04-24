@@ -1,0 +1,53 @@
+@startuml RPG
+interface Ataque {
+  + executar(): void
+}
+
+class AtaqueEspada
+class AtaqueMagia
+class AtaqueArco
+Ataque <|.. AtaqueEspada
+Ataque <|.. AtaqueMagia
+Ataque <|.. AtaqueArco
+
+class EstadoPersonagem {
+  - vida: int
+  - energia: int
+  + getVida(): int
+  + getEnergia(): int
+}
+
+class HistoricoPersonagem {
+  - historico: Stack<EstadoPersonagem>
+  + salvar(estado: EstadoPersonagem): void
+  + restaurar(): EstadoPersonagem
+}
+
+interface Observador {
+  + atualizar(energia: int): void
+}
+
+class ObservadorEnergiaCritica
+Observador <|.. ObservadorEnergiaCritica
+
+class Personagem {
+  - nome: String
+  - vida: int
+  - energia: int
+  - estrategiaDeAtaque: Ataque
+  - historico: HistoricoPersonagem
+  - observadores: List<Observador>
+  + setAtaque(ataque: Ataque): void
+  + atacar(): void
+  + receberDano(dano: int): void
+  + gastarEnergia(qtd: int): void
+  + salvarEstado(): void
+  + restaurarEstado(): void
+  + adicionarObservador(o: Observador): void
+}
+
+Personagem --> Ataque
+Personagem --> HistoricoPersonagem
+Personagem --> Observador
+HistoricoPersonagem --> EstadoPersonagem
+@enduml

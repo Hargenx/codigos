@@ -1,0 +1,24 @@
+@startuml memento
+class Jogo {
+  - posicao: String
+  + moverPara(novaPosicao: String): void
+  + salvar(): EstadoJogo
+  + restaurar(estado: EstadoJogo): void
+  + getPosicao(): String
+}
+
+class EstadoJogo {
+  - posicao: String
+  + EstadoJogo(posicao: String)
+  + getPosicao(): String
+}
+
+class ControleJogo {
+  - historico: Stack<EstadoJogo>
+  + salvar(estado: EstadoJogo): void
+  + desfazer(): EstadoJogo
+}
+
+Jogo --> EstadoJogo : cria e restaura
+ControleJogo --> EstadoJogo : armazena
+@enduml

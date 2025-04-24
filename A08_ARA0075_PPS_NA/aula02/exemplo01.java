@@ -1,3 +1,5 @@
+package A08_ARA0075_PPS_NA.aula02;
+
 
 public class exemplo01 {
     public static int Soma(int a, int b) {

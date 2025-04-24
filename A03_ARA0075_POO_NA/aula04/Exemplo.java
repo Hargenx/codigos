@@ -1,4 +1,4 @@
-package aula04;
+package A03_ARA0075_POO_NA.aula04;
 
 // Classe principal para testar os modificadores
 public class Exemplo {

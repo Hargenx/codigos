@@ -1,4 +1,4 @@
-package exemplo_01;
+package A02_ARA0101_PPJ_CG.aula02.FactoryMethod.exemplo_01;
 
 // Implementação concreta da validação: quantidade deve estar entre 1 e 100
 class DefaultOrderItemProcessor extends OrderItemProcessor {

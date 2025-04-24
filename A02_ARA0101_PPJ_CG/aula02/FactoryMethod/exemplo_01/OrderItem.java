@@ -1,4 +1,4 @@
-package exemplo_01;
+package A02_ARA0101_PPJ_CG.aula02.FactoryMethod.exemplo_01;
 
 // Classe representando um item de pedido
 class OrderItem {

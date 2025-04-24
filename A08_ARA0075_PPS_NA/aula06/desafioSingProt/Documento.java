@@ -1,4 +1,4 @@
-package desafioSingProt;
+package A08_ARA0075_PPS_NA.aula06.desafioSingProt;
 
 public class Documento {
     private String titulo;

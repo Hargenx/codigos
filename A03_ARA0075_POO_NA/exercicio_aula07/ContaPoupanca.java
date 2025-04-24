@@ -1,3 +1,5 @@
+package A03_ARA0075_POO_NA.exercicio_aula07;
+
 public class ContaPoupanca extends Conta {
     private double taxaJuros;
 

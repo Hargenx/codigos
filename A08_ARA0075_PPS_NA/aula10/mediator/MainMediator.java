@@ -1,4 +1,4 @@
-package A08_ARA0075_PPS_NA.aula09.mediator;
+package A08_ARA0075_PPS_NA.aula10.mediator;
 
 public class MainMediator {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package aula04;
+package A03_ARA0075_POO_NA.aula04;
 
 // Classe com diferentes modificadores de acesso
 class MinhaClasse {

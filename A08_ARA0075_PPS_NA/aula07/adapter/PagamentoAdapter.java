@@ -1,3 +1,5 @@
+package A08_ARA0075_PPS_NA.aula07.adapter;
+
 public class PagamentoAdapter implements Pagamento {
     private SistemaAntigo sistema;
 

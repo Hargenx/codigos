@@ -1,4 +1,4 @@
-package exemplo01;
+package A02_ARA0101_PPJ_CG.aula02.FactoryMethod.exemplo01;
 
 public class Produto {
     private String nome;

@@ -1,4 +1,4 @@
-package aula08_try;
+package A03_ARA0075_POO_NA.aula08_try;
 
 public class Main {
     public static void main(String[] args) {

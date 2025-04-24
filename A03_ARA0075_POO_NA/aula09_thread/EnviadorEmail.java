@@ -1,4 +1,4 @@
-package aula09_thread;
+package A03_ARA0075_POO_NA.aula09_thread;
 
 public class EnviadorEmail extends Thread {
     private String destinatario;

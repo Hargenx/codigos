@@ -1,4 +1,4 @@
-package CloneWars;
+package A08_ARA0075_PPS_NA.aula06.CloneWars;
 
 public class MainPrototypeCopy {
     public static void main(String[] args) {

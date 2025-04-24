@@ -1,3 +1,5 @@
+package A03_ARA0075_POO_NA.aula03;
+
 import java.util.*;
 
 public class ExemploColecoes {

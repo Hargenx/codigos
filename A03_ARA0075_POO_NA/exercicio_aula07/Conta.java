@@ -1,3 +1,5 @@
+package A03_ARA0075_POO_NA.exercicio_aula07;
+
 public abstract class Conta {
     protected String numero;
     protected double saldo;

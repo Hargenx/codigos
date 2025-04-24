@@ -1,3 +1,5 @@
+package A08_ARA0075_PPS_NA.aula09.chains_of_responsability;
+
 // MainChain.java (classe de teste)
 public class MainChain {
     public static void main(String[] args) {

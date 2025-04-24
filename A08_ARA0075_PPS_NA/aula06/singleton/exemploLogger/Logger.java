@@ -1,4 +1,4 @@
-package singleton.exemploLogger;
+package A08_ARA0075_PPS_NA.aula06.singleton.exemploLogger;
 
 // Classe Singleton para gerenciamento de logs
 public class Logger {

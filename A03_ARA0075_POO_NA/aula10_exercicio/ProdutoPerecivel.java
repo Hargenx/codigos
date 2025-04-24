@@ -1,4 +1,4 @@
-package aula10_exercicio;
+package A03_ARA0075_POO_NA.aula10_exercicio;
 
 public class ProdutoPerecivel extends Produto {
     public ProdutoPerecivel(int id, String nome, int quantidade, double valor) {

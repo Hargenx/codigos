@@ -1,3 +1,5 @@
+package A08_ARA0075_PPS_NA.aula06;
+
 import java.util.Arrays;
 
 public class ExemploClone {

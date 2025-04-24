@@ -1,4 +1,4 @@
-package A08_ARA0075_PPS_NA.aula09.mediator;
+package A08_ARA0075_PPS_NA.aula10.mediator;
 
 import java.util.ArrayList;
 import java.util.List;

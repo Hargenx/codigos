@@ -1,4 +1,4 @@
-package exemplo_01;
+package A08_ARA0075_PPS_NA.aula03_factory.exemplo_01;
 
 // Fábrica que cria a instância do processador (Factory Method)
 class OrderItemProcessorFactory {

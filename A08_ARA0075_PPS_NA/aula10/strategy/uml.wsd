@@ -1,0 +1,26 @@
+@startuml uml-strategy
+interface FreteStrategy {
+  + calcular(peso: double): double
+}
+
+class Sedex {
+  + calcular(peso: double): double
+}
+class PAC {
+  + calcular(peso: double): double
+}
+class Transportadora {
+  + calcular(peso: double): double
+}
+
+class Checkout {
+  - frete: FreteStrategy
+  + setFrete(frete: FreteStrategy): void
+  + calcularFrete(peso: double): double
+}
+
+FreteStrategy <|.. Sedex
+FreteStrategy <|.. PAC
+FreteStrategy <|.. Transportadora
+Checkout --> FreteStrategy : usa
+@enduml

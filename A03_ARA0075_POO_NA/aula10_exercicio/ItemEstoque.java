@@ -1,4 +1,4 @@
-package aula10_exercicio;
+package A03_ARA0075_POO_NA.aula10_exercicio;
 
 public abstract class ItemEstoque {
     private int id;

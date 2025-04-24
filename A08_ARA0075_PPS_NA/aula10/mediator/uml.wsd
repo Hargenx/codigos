@@ -1,6 +1,6 @@
 @startuml mediator_uml
 
-left to right direction
+
 interface ChatSala {
     +enviar(String mensagem, Usuario remetente): void
     +registrarUsuario(Usuario usuario): void
@@ -8,11 +8,14 @@ interface ChatSala {
 
 class SalaConcreta implements ChatSala {
     -usuarios: List<Usuario>
+    +registrarUsuario(Usuario usuario): void
+    +enviar(String mensagem, Usuario remetente): void
 }
 
 class Usuario {
     -nome: String
     -sala: ChatSala
+    +Usuario(String nome, ChatSala sala): void
     +enviar(String mensagem): void
     +receber(String mensagem): void
 }
