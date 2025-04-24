@@ -104,6 +104,41 @@ class ConexaoBanco:
             log_error(f"Erro ao inserir veículo: {e}")
             raise
 
+        def atualizar_pessoa(self, cpf: str, novo_nome: str, novo_oculos: bool) -> None:
+        try:
+            self.cursor.execute(
+                """
+                UPDATE pessoa
+                SET nome = ?, oculos = ?
+                WHERE cpf = ?
+                """,
+                (novo_nome, novo_oculos, cpf),
+            )
+            self.conexao.commit()
+            if self.cursor.rowcount > 0:
+                log_info(f"Pessoa com CPF {cpf} atualizada com sucesso.")
+            else:
+                log_info(f"Nenhuma pessoa encontrada com o CPF {cpf}. Nenhuma alteração feita.")
+        except sqlite3.Error as e:
+            log_error(f"Erro ao atualizar pessoa com CPF {cpf}: {e}")
+            raise
+        
+    def remover_pessoa(self, cpf: str) -> None:
+        try:
+            self.cursor.execute(
+                "DELETE FROM pessoa WHERE cpf = ?",
+                (cpf,)
+            )
+            self.conexao.commit()
+            if self.cursor.rowcount > 0:
+                log_info(f"Pessoa com CPF {cpf} removida com sucesso.")
+            else:
+                log_info(f"Nenhuma pessoa encontrada com o CPF {cpf}. Nenhuma remoção realizada.")
+        except sqlite3.Error as e:
+            log_error(f"Erro ao remover pessoa com CPF {cpf}: {e}")
+            raise
+
+
     def buscar_veiculos(self) -> List[Tuple]:
         try:
             self.cursor.execute(
