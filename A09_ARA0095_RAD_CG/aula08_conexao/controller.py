@@ -12,8 +12,20 @@ class Controller:
     def run(self):
         while True:
             option = self.view.show_menu()
-
-            if option == '1':
+            match option:
+                case '1':
+                    self.add_book()
+                case '2':
+                    self.list_books()
+                case '3':
+                    self.remove_book()
+                case '4':
+                    self.view.show_message("Exiting the program. Goodbye!")
+                    self.db.close()
+                    break
+                case _:
+                    self.view.show_message("Invalid option. Please try again.")
+'''            if option == '1':
                 self.add_book()
             elif option == '2':
                 self.list_books()
@@ -24,7 +36,7 @@ class Controller:
                 self.db.close()
                 break
             else:
-                self.view.show_message("Invalid option. Please try again.")
+                self.view.show_message("Invalid option. Please try again.")'''
 
     def add_book(self):
         title, author, year = self.view.get_book_info()
