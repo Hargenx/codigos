@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gerenciador de Grupos e Temas para turmas de alunos. Crie turmas, adicione grupos e visualize os temas atribuídos.">
+  <title>Gerenciador de Grupos e Temas</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Gerenciador de Grupos e Temas</h1>
+
+    <section>
+      <h2>➕ Criar Nova Turma</h2>
+      <input id="novaTurma" placeholder="Digite o nome da nova turma">
+      <button onclick="criarTurma()">Criar Turma</button>
+    </section>
+
+    <section>
+      <h2>👨‍👩‍👧‍👦 Adicionar Grupo</h2>
+      <select title="Turma" id="turmaGrupo">
+        <option disabled selected>Selecione uma turma</option>
+      </select>
+      <input id="alunos" placeholder="Nomes dos alunos separados por vírgula">
+      <button onclick="adicionarGrupo()">Adicionar Grupo</button>
+    </section>
+
+    <section>
+      <h2>📋 Visualizar Grupos</h2>
+      <select title="Grupos" id="verTurma" onchange="verTurma()">
+        <option disabled selected>Selecione uma turma</option>
+      </select>
+    </section>
+
+    <div id="saida"></div>
+  </div>
+
+  <script>
+    async function atualizarListas() {
+      const resp = await fetch('/turmas');
+      const turmas = await resp.json();
+      const turmaSelects = [document.getElementById('turmaGrupo'), document.getElementById('verTurma')];
+
+      turmaSelects.forEach(select => {
+        select.innerHTML = '<option disabled selected>Selecione uma turma</option>';
+        turmas.forEach(t => {
+          const option = document.createElement('option');
+          option.value = t;
+          option.innerText = t;
+          select.appendChild(option);
+        });
+      });
+    }
+
+    async function criarTurma() {
+      const nome = document.getElementById("novaTurma").value;
+      const resp = await fetch("/criar_turma", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome })
+      });
+      const data = await resp.json();
+      alert(data.mensagem || data.erro);
+      atualizarListas();
+    }
+
+    async function adicionarGrupo() {
+      const turma = document.getElementById("turmaGrupo").value;
+      const alunos = document.getElementById("alunos").value.split(',').map(a => a.trim());
+      const resp = await fetch("/adicionar_grupo", {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ turma, alunos })
+      });
+      const data = await resp.json();
+      alert(data.mensagem || data.erro);
+      verTurma();
+    }
+
+    async function verTurma() {
+      const turma = document.getElementById("verTurma").value;
+      const resp = await fetch(`/turma/${turma}`);
+      const data = await resp.json();
+      const saida = document.getElementById("saida");
+
+      if (data.erro) {
+        saida.innerHTML = `<p class='erro'>${data.erro}</p>`;
+        return;
+      }
+
+      let html = `<h3>Grupos da Turma <em>${turma}</em></h3><ul>`;
+      for (const grupo of data.grupos) {
+        html += `<li><strong>${grupo.nome}</strong> | Alunos: ${grupo.alunos.join(', ')}<br><em>Tema:</em> ${grupo.tema}</li>`;
+      }
+      html += '</ul>';
+      saida.innerHTML = html;
+    }
+
+    window.onload = atualizarListas;
+  </script>
+</body>
+</html>
