@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+void troca(int *v,int *l){
+    system ("PAUSE");
+    cout << "\nEstamos dentro da funcao...\n\n";
+    cout << "\nValores dos parametros : *v = " << *v << " *l = " << *l;
+    cout << "\nValores dos pointers : v = " << v << " l = " << l;
+    int t;
+    t = *v;
+    *v = *l;
+    *l = t;
+    cout << "\nEstamos saindo da funcao...\n\n";
+    return;         
+}
+
+int main(){
+    int x, y;
+    cout << "Digite x:";
+    cin >> x;
+    cout << "Digite y:";
+    cin >> y;
+    
+    cout << "\nValores antes da troca : x = " << x << " y = " << y;
+    cout << "\nEnderecos antes da troca : &x = " << &x << " &y = " << &y << "\n\n";
+    
+    troca (&x, &y);
+    
+    system ("PAUSE");
+    cout << "\nValor de x = " << x;
+    cout << "\nValor de y = " << y << "\n\n";
+    system("PAUSE");
+    return 0;
+}

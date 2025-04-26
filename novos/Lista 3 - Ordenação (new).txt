@@ -1,0 +1,119 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+void inserir(int v[], int &n, int e){
+	if (40 == n){
+		cout << "ERRO: Lista cheia.";
+	}else{
+		v[n] = e;
+		n++;
+	}
+}
+
+void percorrer(int v[], int n){
+	for (int i = 0; i < n; i++)
+		cout <<  v[i] << " ";
+}
+
+bool troca (int v[], int a, int b){
+     int aux;
+     aux = v[a];
+     v[a] = v[b];
+     v[b] = aux;
+     return true;
+}
+
+int ordenaBolha(int v[], int n){
+   	bool trocou = true;
+	int i, fim = n-1, aux = 6;
+	while (trocou){
+		trocou = false;
+		aux = aux + 2;
+		for (i = 0; i < fim; i++){
+            aux = aux + 3;
+			if (v[i] > v[i+1]){
+				trocou = troca(v,i,(i+1));
+				aux = aux + 5;
+			}
+		}
+		fim--;
+		aux = aux + 1;
+	} // fim while
+	return aux;
+}// fim da função
+
+
+int ordenaSelecao(int v[], int n){
+	int i, j, menor, aux = 4;
+	for (j = 0; j < n-1; j++){
+        aux = aux + 2;
+		menor = j;
+		aux = aux + 1;
+		for (i = j+1; i < n; i++){
+            aux = aux + 3;
+			if (v[i] < v[menor]){
+                menor = i;
+			    aux = aux + 1;
+            }
+		}
+		troca(v,j,menor);
+		aux = aux + 5;
+	}
+	return aux;
+}
+
+
+int ordenaInsercao(int v[], int n){
+	int i, j, aux = 3;
+	for (j = 1; j < n; j++){
+        aux = aux + 2;
+		for (i=j; i > 0 && v[i-1]> v[i]; i--){
+                   aux = aux + 4;                    
+                   troca(v,i,(i-1));
+                   aux = aux + 5;                   
+		}
+    }
+    return aux;
+}
+
+// Prog. Principal
+int main(){
+	int v[40], tam = 0, i, temp, temp2=0;
+    int v2[40], tam2 = 0;
+    int v3[40], tam3 = 0;
+    cout << "\nRotina de leitura da colecao:\n\n";
+   	for (i = 0; i < 10; i++){
+		cout << "Digite um numero: ";
+		cin >> temp;
+		inserir(v, tam, temp);
+		inserir(v2, tam2, temp);
+		inserir(v3, tam3, temp);
+	}
+	cout << "\n\n I N S E R T   S O R T";
+	cout << "\n Imprimindo antes de ordenar C1: ";
+	percorrer(v,tam);
+	temp = ordenaInsercao(v,tam);
+	cout << "\n Imprimindo depois de ordenar C1: ";
+	percorrer(v,tam);
+	cout << "\n Precisei de " << temp << " operacoes para oredenar...\n\n";
+	
+	cout << "\n\n S E L E C T   S O R T";
+	cout << "\n Imprimindo antes de ordenar C2: ";
+	percorrer(v2,tam2);
+	temp = ordenaSelecao(v2,tam2);
+	cout << "\n Imprimindo depois de ordenar C2: ";
+	percorrer(v2,tam2);
+	cout << "\n Precisei de " << temp << " operacoes para oredenar...\n\n";
+
+	cout << "\n\n B U B L E   S O R T";
+	cout << "\n Imprimindo antes de ordenar C3: ";
+	percorrer(v3,tam3);
+	temp2 = ordenaBolha(v3,tam3);
+	cout << "\n Imprimindo depois de ordenar C3: ";
+	percorrer(v3,tam3);
+	cout << "\n Precisei de " << temp2 << " operacoes para oredenar...\n\n";
+
+	system("pause");
+	return 0;
+}

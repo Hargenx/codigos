@@ -1,0 +1,45 @@
+#include <iostream>
+#define MAX 10 // tamanho máximo para a área de armazenamento
+using namespace std;
+
+bool testaCheia (int tam){
+     return (tam == MAX);
+}
+
+bool testaVazia (int tam){
+     return (tam == 0);
+}
+
+void iniciaLista (int *tam){
+     *tam = 0;
+     return;
+}
+
+void inserir (int v[], int *tam, int e){
+}
+
+void exibir (int v[], int tam){
+}
+
+int buscarSequencial (int v[], int tam, int e){
+}
+
+void remover (int v[], int *tam, int e){
+}
+
+// Prog. Principal
+int main(){
+	int v[MAX], i, tam, temp, n;
+        iniciaLista(&tam); // variável pra controlar o tamanho da lista
+	cout << "Digite o tamanho da entrada: ";
+        cin >> n;
+	for (i = 0; i < n; i++){
+		cout << "Digite um numero: " << endl;
+		cin >> temp;
+		inserir(v, &tam, temp);
+	}
+	percorrer(v,tam);
+	system("pause");
+	return 0;
+}
+

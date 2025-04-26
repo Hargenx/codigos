@@ -1,0 +1,77 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+struct ponto {
+       double x; // endereço na coordenada X
+       double y; // endereço na coordenada Y
+};
+
+struct lista {
+       int tam; // variável pra controlar o tamanho da lista
+       struct ponto v[100]; // Área de armazenamento da lista
+};
+
+void iniciaLista (lista *l){
+     l->tam = 0;    
+}
+
+void inserir(lista *l, ponto p){
+     if (l->tam == 100){
+         cout << "\n\nERRO! lista cheia...\n";         
+     }
+     l->v[l->tam] = p;
+     (l->tam)++;
+     return;
+}
+
+void percorrer(lista l){
+     int i;
+     cout << "\n\n"; 
+     for (i=0; i<l.tam; i++){
+         cout << "(" << l.v[i].x << "," << l.v[i].y << ") ";
+     }
+     cout << "\n\n";
+     return;
+}
+
+int buscarSequencial(lista l, ponto p){
+}
+
+void remover(lista *l, ponto p){
+}
+
+double dist (ponto a, ponto b){
+       double q1, q2, resp;
+       q1 = a.x - b.x;
+       q2 = a.y - b.y;
+       q1 = q1 * q1;
+       q2 = q2 * q2;
+       resp = sqrt (q1 + q2);
+       return resp;
+}
+
+// Prog. Principal
+int main(){
+    int i, n;
+    lista l;
+    ponto temp;
+    iniciaLista(&l);
+    cout << "Digite o tamanho da entrada: ";
+    cin >> n;
+	for (i = 0; i < n; i++){
+		cout << "\nDigite a coordenada X do ponto " << (i + 1) << ": ";
+		cin >> temp.x;
+ 	    cout << "Digite a coordenada Y do ponto " << (i + 1) << ": ";
+		cin >> temp.y;
+		inserir(&l, temp);
+	}	
+	percorrer(l);
+	for (i = 0; i < (n-1); i++){
+		cout << "\nDistancia entre ponto " << i << " e ponto " << (i + 1) << ": ";
+		cout << dist(l.v[i],l.v[i+1]);
+ 	    cout << "\n";
+	}
+	system("pause");
+	return 0;
+}
