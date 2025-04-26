@@ -2,6 +2,12 @@
 #include <cstdlib>
 using namespace std;
 
+struct resp{
+	int passos;
+	int pos;
+};
+
+
 void percorrer(int v[], int n){
 	for (int i = 0; i < n; i++)
 		cout << v[i] << " ";
@@ -19,7 +25,7 @@ void percorrer(int v[], int n){
 
 void inserirEmOrdem(int v[], int &n, int valor){
 	int i, posicao;
-	if(n == 40){
+	if(n == 128){
 		cout << "ERRO : Lista cheia." << endl;
 		return;
 	}
@@ -33,22 +39,36 @@ void inserirEmOrdem(int v[], int &n, int valor){
 	n++;
 }
 
-//int buscarSequencial(int v[], int n, int valor){
-//	for (int i = 0; i < n; i++){
-//		if (v[i] == valor) return i;
-//	}
-//	return -1;
-//}
+resp buscarSequencial(int v[], int n, int valor){
+	resp r;
+	r.passos = 0;
+	for (int i = 0; i < n; i++){
+		r.passos = r.passos + 1;
+		if (v[i] == valor){
+			r.pos = i;
+		    return r;
+	    }
+	}
+	r.pos = -1;
+	return r;
+}
 
-int buscaBinaria(int v[], int n, int e){
+resp buscaBinaria(int v[], int n, int e){
+	resp r;
+	r.passos = 1;
 	int ini = 0, fim = n -1, meio;
-	while (ini <= fim){
+	while (ini <= fim){		
 		meio = (ini + fim)/2;
-		if (v[meio] == e) return meio;
+		if (v[meio] == e){
+			 r.pos = meio;
+		     return r;
+		}
 		if (e < v[meio]) fim = meio -1;
 		else ini = meio+1;
+		r.passos = r.passos + 1;
 	}
-	return -1;
+	r.pos = -1;
+	return r;
 }
 
 //void remover(int v[], int &n, int e){
@@ -69,17 +89,18 @@ int buscaBinaria(int v[], int n, int e){
 
 void removerEmOrdem(int v[], int &n, int valor){
 	int i, pos;
+	resp r;
 	if(n == 0) { // testa se o vetor está vazio
 		cout << "ERRO : Lista vazia. \n";
 		return;
 	}
-	pos = buscaBinaria(v,n,valor);
-	if (pos < 0){
+	r = buscaBinaria(v,n,valor);
+	if (r.pos < 0){
 		cout << "ERRO : Elemento não encontrado. \n";
 		return;
 	}
 	n--;
-	for (i = pos; i < n; i++) v[i] = v[i+1];
+	for (i = r.pos; i < n; i++) v[i] = v[i+1];
 	cout << "Imprimindo a lista: \n";
 	percorrer(v,n);
 }
@@ -103,30 +124,43 @@ void ordenarBolha(int v[], int n){
 
 // Prog. Principal
 int main(){
-	int v[40], tam, i, temp;
+	int v[128], tam, i, temp;
+	resp rs, rb;
     tam = 0; // Zerando a lista
     cout << "Gerando lista automática . . . \n";
-	for (i = 0; i < 15; i++){
-		temp = i * 2;
+	for (i = 0; i < 128; i++){
+		temp = (i * 3) - 1;
 		inserirEmOrdem(v, tam, temp);
 	}
 	percorrer(v,tam);
-	cout << "\nDigite um numero pra ENCONTRAR: " << endl;
+	
+	cout << "\n\nDigite um numero pra ENCONTRAR: " << endl;
 	cin >> temp;
-	i = buscaBinaria(v,tam,temp);
-	if (i == (-1)){
-		cout << "Nao achei " << temp << "...\n";
+	
+	//cout << "Chamando busca sequencial...";
+	rs = buscarSequencial(v,tam,temp);
+	
+	rb = buscaBinaria(v,tam,temp);
+	
+	if (rs.pos == (-1)){
+		cout << "\nBINARIA nao achou " << temp << " e demorou " << rb.passos << " passos...\n";
+		cout << "\nSEQUENCIAL nao chou " << temp << " e demorou " << rs.passos << " passos...\n";
 	}else{
-		cout << "Achei " << temp << " na posicao " << i << "...\n";
+		cout << "\nBINARIA Achou " << temp << " na posicao " << rb.pos << " em " << rb.passos << " passos...\n";
+		cout << "\nSEQUENCIAL Achou " << temp << " na posicao " << rs.pos << " em " << rs.passos << " passos...\n";
 	}
 
 	cout << "\nDigite um numero pra NAO ENCONTRAR: " << endl;
 	cin >> temp;
-	i = buscaBinaria(v,tam,temp);
-	if (i == (-1)){
-		cout << "Nao achei " << temp << "...\n";
+	rs = buscarSequencial(v,tam,temp);
+	
+	rb = buscaBinaria(v,tam,temp);
+	if (rs.pos == (-1)){
+		cout << "\nBINARIA nao achou " << temp << " e demorou " << rb.passos << "passos...\n";
+		cout << "\nSEQUENCIAL nao chou " << temp << " e demorou " << rs.passos << "passos...\n";
 	}else{
-		cout << "Achei " << temp << " na posicao " << i << "...\n";
+		cout << "\nBINARIA nao achou " << temp << " e demorou " << rb.passos << "passos...\n";
+		cout << "\nSEQUENCIAL nao chou " << temp << " e demorou " << rs.passos << "passos...\n";
 	}
 
 	cout << "Digite um numero pra excluir: " << endl;
