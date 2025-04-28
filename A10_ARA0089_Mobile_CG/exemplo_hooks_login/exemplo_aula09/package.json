@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "exemplo_aula09": "file:",
     "expo": "~52.0.46",
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",

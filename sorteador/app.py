@@ -142,3 +142,11 @@ if __name__ == '__main__':
     os.makedirs('static', exist_ok=True)
     init_db()
     app.run(debug=True)
+    # para rodar o servidor, execute o seguinte comando no terminal o fastAPI:
+    # uvicorn app:app --reload
+    # para rodar o servidor, execute o seguinte comando no terminal o flask:
+    # python app.py
+    # para rodar o servidor, execute o seguinte comando no terminal o django:
+    # python manage.py runserver
+    # para rodar o servidor, execute o seguinte comando no terminal o flask com gunicorn:
+    # gunicorn app:app --bind
