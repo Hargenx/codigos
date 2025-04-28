@@ -1,0 +1,182 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+struct no {
+    int valor;
+    struct no *prox;    
+};
+
+struct no *inicio;
+
+
+void iniciaLista (){
+    inicio = NULL;
+}
+
+bool testaListaVazia (){
+     return (inicio == NULL);
+}
+//Primeira Função -- Inserção
+int insereLista(int dado){
+    struct no *pt;
+    pt = new struct no;
+    pt -> valor = dado; 
+    pt -> prox = NULL;
+    if(testaListaVazia()){
+       inicio = pt;
+     }else {
+       pt -> prox = inicio;
+       inicio = pt;
+     }
+     return 1;
+}
+
+void viewInsere(){
+     int t,x;
+     cout<<"\nDigite um numero:";
+     cin>> t;
+     x = insereLista(t);
+     if (x!=1) {
+        cout<<"Erro na insercao";
+     }else {
+              cout<<"\nElemento "<<t;
+              cout<<" inserido com sucesso!";
+     }
+ }
+ 
+void imprimeLista(){
+     struct no *pt;
+     if(testaListaVazia()){
+        cout<<"A Lista estah vazia...";
+        return;
+        }
+        cout<<"\n inicio";
+        pt = inicio;
+        while(pt!=NULL){
+              cout<<" -> "<<pt->valor;
+              pt = pt -> prox;
+              }
+              cout<<" -||\n";
+ }
+ 
+struct no *buscaLista (int dado){
+       struct no *pt;
+       if(testaListaVazia()){
+          return NULL;
+       }
+       pt = inicio;
+       while (pt != NULL){
+             if(pt->valor == dado){
+                return pt;
+             }
+             pt = pt-> prox;
+             }
+             return NULL;
+       }
+       
+void viewBusca(){
+     struct no *pt;
+     int x;
+     cout<<"Qual elemento quer buscar? ";
+     cin>>x;
+     pt = buscaLista(x);
+     if(pt != NULL){
+           cout<<"Achei o "<<pt->valor;
+           cout<<" no endereco "<<pt;
+           }else{
+                 cout<<"Elemento nao esta a lista";
+           }
+       }
+
+bool alteraElementoLista(int dado, int novo){
+	struct no *pt;
+	pt = buscaLista(dado);
+	if(pt == NULL){
+		return false;
+	}else{
+		pt -> valor = novo;
+		return true;
+	}
+   }
+
+void viewAltera(){
+	int elem, novo;
+	cout <<"Qual elemento deve sair da lista?";
+	cin >> elem;
+	cout <<"E qual deve entrar no lugar?";
+	cin >> novo;
+		if(alteraElementoLista(elem, novo)){
+		    cout<<"O elemento " << elem << " foi trocado pelo "<< novo;
+	}else{
+		cout<<"nao foi possivel fazer a alteracao...";
+	}
+    }
+
+bool excluirElementoLista(int dado){
+	struct no *pt, *ant;
+	pt = buscaLista(dado);
+	  if(pt == NULL)
+	     return false;
+	ant = inicio;
+	  if(ant == pt){
+	inicio=pt->prox;
+	  }else{
+	     while(ant ->prox!=pt){
+	      ant=ant->prox;
+	  }
+		ant-> prox = pt-> prox;
+	  }
+		delete pt;
+		return true;
+	  }
+
+void viewExcluir(){
+	int elem;
+	cout<<"Qual elemento deve ser excluido? ";
+	cin>>elem;
+		if(excluirElementoLista(elem)){
+		   cout<<"O elemento "<<elem<<" foi excluido...";
+		}else{
+		   cout<<"nao foi possivel fazer a exclusao...";
+		}
+	      }      
+
+
+int main(int argc, char* argv[]){
+    int x, op;
+    iniciaLista();
+    do {
+        cout << "\n\n1 - Testa Lista Vazia";
+        cout << "\n2 - Incluir";
+        cout << "\n3 - Listar";
+        cout << "\n4 - Buscar";
+        cout << "\n5 - Alterar";
+        cout << "\n6 - Excluir";
+        cout << "\n7 - Sair";
+        cout << "\n\nDigite sua opcao: ";
+        cin >> op;
+        switch (op){
+            case 1: if (testaListaVazia()){
+                       cout << "\n A fila estah Vazia!\n";
+                    }else{
+                       cout << "\n A fila nao estah Vazia!\n";
+                    }break;
+            case 2: viewInsere();
+                    break;
+            case 3: imprimeLista();
+                    break;
+            case 4: viewBusca();
+                    break;
+            case 5: viewAltera();
+                    break;
+            case 6: viewExcluir();
+                    break;
+            case 7: 
+		    break;
+            default: cout << "Opcao invalida . . .\n\n";
+        }
+    } while (op != 7);
+    return 0;
+}

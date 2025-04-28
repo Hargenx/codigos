@@ -1,0 +1,189 @@
+#include <iostream>
+#include <cstdlib>
+#define TAM 200 // tamanho máximo para a área de armazenamento
+#define MAX 10 // tamanho máximo para a área de armazenamento
+
+using namespace std;
+
+struct pilha {
+       int a[TAM];
+       int topo;
+       int tamanho;
+};
+
+struct fila {
+       int a[MAX];
+       int ini;
+       int fim;
+       int tam;
+};
+
+
+void iniciaPilha (struct pilha *p){
+     p->topo = -1;
+     p->tamanho = TAM - 1;
+}
+
+bool pilhaVazia (struct pilha *p){
+     if (p->topo == -1) return true;
+     else return false;
+}
+
+bool pilhaCheia (struct pilha *p){
+     if (p->topo == p-> tamanho) return true;
+     else return false;
+}
+
+bool push (struct pilha *p, int n){
+     if (pilhaCheia(p)){ return false; }
+     else {
+          p->topo++;
+          p->a[p->topo] = n;
+          return true;
+     }
+}
+
+bool pop (struct pilha *p, int *r){
+     if (pilhaVazia(p)){ return false; }
+     else {
+          *r = p->a[p->topo];
+          p->topo--;
+          return true;
+     }
+}
+
+void exibePilha (struct pilha *p){
+     int n; struct pilha t;
+     iniciaPilha(&t);
+     // Inverte a pilha para a pilha temporária t
+     while (!pilhaVazia(p)){ pop(p,&n); push(&t,n); }
+     cout << "\n\n";
+     while (!pilhaVazia(&t)){
+          pop(&t,&n);
+          cout << n << " ";
+          push(p,n);
+     } // Inverte a pilha temporária t de volta para p exibindo na tela
+}
+
+void iniciaFila (struct fila *f){
+     f->ini = 0;
+     f->fim = 0;
+     f->tam = 0;
+}
+
+bool filaVazia (struct fila *f){
+     if (f->tam == 0) return true;
+     else return false;
+}
+
+bool filaCheia (struct fila *f){
+     if (f->tam == MAX) return true;
+     else return false;
+}
+
+bool enfileira (struct fila *f, int n){
+     if (filaCheia(f)){ return false; }
+     else {
+          f->a[f->fim % MAX] = n;
+          f->fim++;
+          f->tam++;
+          return true;
+     }
+}
+
+bool desinfileira (struct fila *f, int *r){
+     if (filaVazia(f)){ return false; }
+     else {
+          *r = f->a[f->ini % MAX];
+          f->ini++;
+          f->tam--;
+          return true;
+     }
+}
+
+void exibeFila (struct fila *f){
+     int i,n;
+     for (i=0; i< f->tam; i++){
+         desinfileira(f,&n);
+         cout << n << " ";
+         enfileira(f,n);
+     }cout << "\n\n";
+}
+
+
+int main(int argc, char* argv[]){
+    struct pilha p;
+    struct fila f;
+    int x, op;
+    iniciaPilha(&p);
+    iniciaFila(&f);
+    do {
+       cout << "\n1 - Testa Pilha vazia";
+       cout << "\n2 - Testa Pilha cheia";
+       cout << "\n3 - Empilha";
+       cout << "\n4 - Desempilha";
+       cout << "\n5 - Exibir pilha";
+       cout << "\n6 - Testa vazia";
+       cout << "\n7 - Testa cheia";
+       cout << "\n8 - Enfileira";
+       cout << "\n9 - Desenfileira";
+       cout << "\n10 - Exibir fila";
+       cout << "\n11 - Sair";
+       cout << "\nDigite sua opcao: ";
+       cin >> op;
+       switch (op){
+              case 1: if (pilhaVazia(&p)){
+                         cout << "Sim\n\n";
+                      } else {
+                         cout << "Nao\n\n";
+                      }break;
+              case 2: if (pilhaCheia(&p)){
+                         cout << "Sim\n\n";
+                      } else {
+                        cout << "Nao\n\n";
+                      }break;
+              case 3: cout << "Digite um numero pra empilhar: ";
+                      cin >> x;
+                      if (push(&p,x)){
+                         cout << "Ok\n\n";
+                      } else {
+                        cout << "Erro\n\n";
+                      }break;
+              case 4: if (pop(&p,&x)){
+                         cout << "Desempilhado = " << x <<"\n\n";
+                      } else {
+                         cout << "Erro\n\n";
+                      }break;
+              case 5: exibePilha(&p); break;
+
+            case 6: if (filaVazia(&f)){
+                       cout << "Sim\n\n";
+                    }else{
+                       cout << "Nao\n\n";
+                    }break;
+            case 7: if (filaCheia(&f)){
+                       cout << "Sim\n\n";
+                    }else{
+                       cout << "Nao\n\n";
+                    }break;
+            case 8: cout << "Digite um numero pra enfileirar: ";
+                    cin >> x;
+                    if (enfileira(&f,x)){
+                       cout << "Ok\n\n";
+                    }else{
+                       cout << "Erro\n\n";
+                    }break;
+            case 9: if (desinfileira(&f,&x)){
+                       cout << "Desenfileirado = " << x <<"\n\n";
+                    }else{
+                       cout << "Erro\n\n";
+                    }break;
+            case 10: exibeFila(&f); break;
+            case 11: break;
+            default: cout << "Opcao invalida . . .\n\n";
+       }
+    } while (op != 11);
+    cout << "\n\n";
+    system("PAUSE");
+    return 0;
+}

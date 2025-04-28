@@ -1,0 +1,103 @@
+#include <iostream>
+#include <cstdlib>
+#define MAX 10 // tamanho máximo para a área de armazenamento
+
+using namespace std;
+
+struct fila {
+       int a[MAX];
+       int ini;
+       int fim;
+       int tam;
+};
+
+void iniciaFila (struct fila *f){
+     f->ini = 0;
+     f->fim = 0;
+     f->tam = 0;
+}
+
+bool filaVazia (struct fila *f){
+     if (f->tam == 0) return true;
+     else return false;
+}
+
+bool filaCheia (struct fila *f){
+     if (f->tam == MAX) return true;
+     else return false;
+}
+
+bool enfileira (struct fila *f, int n){
+     if (filaCheia(f)){ return false; }
+     else {
+          f->a[f->fim % MAX] = n;
+          f->fim++;
+          f->tam++;
+          return true;
+     }
+}
+
+bool desinfileira (struct fila *f, int *r){
+     if (filaVazia(f)){ return false; }
+     else {
+          *r = f->a[f->ini % MAX];
+          f->ini++;
+          f->tam--;
+          return true;
+     }
+}
+
+void exibeFila (struct fila *f){
+     int i,n;
+     for (i=0; i< f->tam; i++){
+         desinfileira(f,&n);
+         cout << n << " ";
+         enfileira(f,n);
+     }cout << "\n\n";
+}
+
+int main(int argc, char* argv[]){
+    struct fila f;
+    int x, op;
+    iniciaFila(&f);
+    do {
+        cout << "\n1 - Testa vazia";
+        cout << "\n2 - Testa cheia";
+        cout << "\n3 - Enfileira";
+        cout << "\n4 - Desenfileira";
+        cout << "\n5 - Exibir fila";
+        cout << "\n6 - Sair";
+        cout << "\nDigite sua opcao: ";
+        cin >> op;
+        switch (op){
+            case 1: if (filaVazia(&f)){
+                       cout << "Sim\n\n";
+                    }else{
+                       cout << "Nao\n\n";
+                    }break;
+            case 2: if (filaCheia(&f)){
+                       cout << "Sim\n\n";
+                    }else{
+                       cout << "Nao\n\n";
+                    }break;
+            case 3: cout << "Digite um numero pra enfileirar: ";
+                    cin >> x;
+                    if (enfileira(&f,x)){
+                       cout << "Ok\n\n";
+                    }else{
+                       cout << "Erro\n\n";
+                    }break;
+            case 4: if (desinfileira(&f,&x)){
+                       cout << "Desenfileirado = " << x <<"\n\n";
+                    }else{
+                       cout << "Erro\n\n";
+                    }break;
+            case 5: exibeFila(&f); break;
+            case 6: break;
+            default: cout << "Opcao invalida . . .\n\n";
+        }
+    } while (op != 6);
+    cout << "\n\n";
+    system("PAUSE");
+    return 0;
+}

@@ -1,0 +1,103 @@
+#include <iostream>
+#include <cstdlib>
+#define TAM 200 // tamanho máximo para a área de armazenamento
+
+using namespace std;
+
+struct pilha {
+       int a[TAM];
+       int topo;
+       int tamanho;
+};
+
+void iniciaPilha (struct pilha *p){
+     p->topo = -1;
+     p->tamanho = TAM - 1;
+}
+
+bool pilhaVazia (struct pilha *p){
+     if (p->topo == -1) return true;
+     else return false;
+}
+
+bool pilhaCheia (struct pilha *p){
+     if (p->topo == p-> tamanho) return true;
+     else return false;
+}
+
+bool push (struct pilha *p, int n){
+     if (pilhaCheia(p)){ return false; }
+     else {
+          p->topo++;
+          p->a[p->topo] = n;
+          return true;
+     }
+}
+
+bool pop (struct pilha *p, int *r){
+     if (pilhaVazia(p)){ return false; }
+     else {
+          *r = p->a[p->topo];
+          p->topo--;
+          return true;
+     }
+}
+
+void exibePilha (struct pilha *p){
+     int n; struct pilha t;
+     iniciaPilha(&t);
+     // Inverte a pilha para a pilha temporária t
+     while (!pilhaVazia(p)){ pop(p,&n); push(&t,n); }
+     cout << "\n\n";
+     while (!pilhaVazia(&t)){
+          pop(&t,&n);
+          cout << n << " ";
+          push(p,n);
+     } // Inverte a pilha temporária t de volta para p exibindo na tela
+}
+
+int main(int argc, char* argv[]){
+    struct pilha p;
+    int x, op;
+    iniciaPilha(&p);
+    do {
+       cout << "\n1 - Testa vazia";
+       cout << "\n2 - Testa cheia";
+       cout << "\n3 - Empilha";
+       cout << "\n4 - Desempilha";
+       cout << "\n5 - Exibir pilha";
+       cout << "\n6 - Sair";
+       cout << "\nDigite sua opcao: ";
+       cin >> op;
+       switch (op){
+              case 1: if (pilhaVazia(&p)){
+                         cout << "Sim\n\n";
+                      } else {
+                         cout << "Nao\n\n";
+                      }break;
+              case 2: if (pilhaCheia(&p)){
+                         cout << "Sim\n\n";
+                      } else {
+                        cout << "Nao\n\n";
+                      }break;
+              case 3: cout << "Digite um numero pra empilhar: ";
+                      cin >> x;
+                      if (push(&p,x)){
+                         cout << "Ok\n\n";
+                      } else {
+                        cout << "Erro\n\n";
+                      }break;
+              case 4: if (pop(&p,&x)){
+                         cout << "Desempilhado = " << x <<"\n\n";
+                      } else {
+                         cout << "Erro\n\n";
+                      }break;
+              case 5: exibePilha(&p); break;
+              case 6: break;
+              default: cout << "Opcao invalida . . .\n\n";
+       }
+    } while (op != 6);
+    cout << "\n\n";
+    system("PAUSE");
+    return 0;
+}

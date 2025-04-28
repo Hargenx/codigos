@@ -1,0 +1,100 @@
+#include <iostream>
+
+using namespace std;
+
+struct no{
+       int valor;
+       struct no *esq;
+       struct no *dir;       
+};
+
+struct no *raiz;
+
+
+void iniciaArvore ( ){
+     cout << "\nArvore Binaria Iniciada!\n";
+     raiz = NULL;
+}
+
+bool testaArvoreVazia (){
+     return (raiz == NULL);
+}
+
+void insereArvore(int num){
+    struct no *pt, *b;
+    pt = new struct no;
+    pt -> valor = num; 
+    pt -> esq = NULL;
+    pt -> dir = NULL;    
+    if(testaArvoreVazia()){
+       cout << "Inserido na raiz !\n";                    
+       raiz = pt;
+     }else {
+       b = raiz; 
+       while (b != NULL){
+          cout << "\nAnalisando no " << b->valor << "...\n";    
+          if(num < b->valor){
+             if ( b->esq == NULL ){
+                 cout << "Achei o local de inclusão!"; 
+                 b->esq = pt;
+                 b = NULL;
+             } else {   
+                 cout << "Buscando local a esquerda ...\n";                     
+                 b = b->esq;
+             }
+          }else{
+             if ( b->dir == NULL ){
+                 cout << "Achei o local de inclusão!"; 
+                 b->dir = pt;
+                 b = NULL;
+             } else {   
+                 cout << "Buscando local a esquerda ...\n";                     
+                 b = b->dir;
+             }
+          }
+       }
+     }
+     cout << "Elemento " << num << " inserido... \n";
+}
+
+void erd (struct no *r) {
+   if (r != NULL) {
+      erd (r->esq);
+      cout << "\n" << r->valor;
+      erd (r->dir); 
+   }
+}
+
+void red (struct no *r) {
+   if (r != NULL) {
+      cout << "\n" << r->valor;
+      red (r->esq);
+      red (r->dir); 
+   }
+}
+
+void edr (struct no *r) {
+   if (r != NULL) {
+      red (r->esq);
+      red (r->dir); 
+      cout << "\n" << r->valor;
+   }
+}
+
+int main ( ){
+    int i,temp;
+    iniciaArvore();
+    for (i=0; i<7; i++){
+        cout << "\n Informe um numero: ";
+        cin >> temp;
+        insereArvore(temp);
+    }
+    cout << "\n\n percurso Em Ordem: \n";
+    erd(raiz);
+    cout << "\n\n percurso Pre Ordem: \n";
+    red(raiz);
+    cout << "\n\n percurso pos Ordem: \n";
+    edr(raiz);
+    system("PAUSE");
+    return 0;
+}
