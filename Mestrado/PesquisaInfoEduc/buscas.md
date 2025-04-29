@@ -11,14 +11,14 @@ Abaixo, apresento os links diretos para as pesquisas em cada base, juntamente co
 ## 🔎 **1. [Google Scholar](ttps://scholar.google.com/)**
 
 - **Link da pesquisa:** [Google Scholar](https://scholar.google.com/scholar?q="Agent-Based+Modeling"+AND+"investment+strategies"+AND+"financial+market"&hl=pt-BR&as_sdt=0%2C5&as_ylo=2020&as_yhi=2025)
-- **Resultados aproximados:** 142
+- **Resultados:** 145
 
 ---
 
 ## 🔎 **2. [SSRN (Social Science Research Network)](https://papers.ssrn.com/sol3/DisplayAbstractSearch.cfm)**
 
 - **String:** agent-based modeling investment strategies financial market
-- **Resultados aproximados:** 2
+- **Resultados:** 2
 - Apens um dos dois tem sentido:
 
 Title:
@@ -42,11 +42,16 @@ Keywords: Complex Systems, Power Law, Scaling Laws, Agent-Based Models, Stochast
 ## 🔎 **3. [IEEE Xplore](https://ieeexplore.ieee.org/Xplore/home.jsp)**
 
 - **Link da pesquisa: [IEEE](https://ieeexplore.ieee.org/search/searchresult.jsp?action=search&newsearch=true&matchBoolean=true&queryText=("All%20Metadata":Agent-Based%20Modeling)%20AND%20("All%20Metadata":investment%20strategies)%20AND%20("All%20Metadata":financial%20market)&ranges=2020_2025_Year)
-- **Resultados aproximados:** 11
+- **Resultados:** 11
 
 ---
 
-## 🔎 **4. [Web of Science](https://www-periodicos-capes-gov-br.ez29.periodicos.capes.gov.br/index.php/acervo/buscador.html?task=detalhes&source=all&id=CAP04202)**
+## 🔎 **4. [periodicos-capes](https://www-periodicos-capes-gov-br)**
+
+- **Link da pesquisa: [capes](https://www-periodicos-capes-gov-br.ez29.periodicos.capes.gov.br/index.php/acervo/buscador.html?task=detalhes&source=all&id=CAP04202)**
+- **Resultados:** 6 - Revisado por pares
+
+---
 
 - **Link da pesquisa:** [Web of Science](https://www-webofscience-com.ez29.periodicos.capes.gov.br/wos/alldb/summary/664d1b9c-31f3-4510-baee-04da767055eb-015cad59f2/relevance/1)
 - **Resultados aproximados** 2
