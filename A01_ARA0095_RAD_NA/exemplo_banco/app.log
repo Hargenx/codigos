@@ -1,0 +1,7 @@
+2025-04-29 16:33:11,427 - INFO - Conectado ao banco SQLite em D:\Estacio\2025_01\codigos\A01_ARA0095_RAD_NA\exemplo_banco\veiculos.sqlite.
+2025-04-29 16:33:11,466 - INFO - Tabelas criadas com sucesso.
+2025-04-29 16:33:11,466 - INFO - Controlador inicializado com sucesso.
+2025-04-29 16:33:37,457 - INFO - Pessoa inserida com sucesso.
+2025-04-29 16:33:37,457 - INFO - Pessoa cadastrada: Raphael (CPF: 1111) - Nasc: 1984-07-26 - Óculos: Sim
+2025-04-29 16:33:45,692 - INFO - Conexão SQLite encerrada.
+2025-04-29 16:33:45,692 - INFO - Programa encerrado.
