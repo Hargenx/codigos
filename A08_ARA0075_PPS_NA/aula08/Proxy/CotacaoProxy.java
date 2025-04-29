@@ -9,7 +9,7 @@ public class CotacaoProxy implements CotacaoService {
     private LocalDateTime ultimaConsulta;
 
     public double getCotacaoDolar() {
-        if (ultimaConsulta == null || Duration.between(ultimaConsulta, LocalDateTime.now()).getSeconds() > 30) {
+        if (ultimaConsulta == null || Duration.between(ultimaConsulta, LocalDateTime.now()).getSeconds() > 3) {
             cache = cotacaoReal.getCotacaoDolar();
             ultimaConsulta = LocalDateTime.now();
         } else {

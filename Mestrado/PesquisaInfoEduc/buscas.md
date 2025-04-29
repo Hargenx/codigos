@@ -19,6 +19,23 @@ Abaixo, apresento os links diretos para as pesquisas em cada base, juntamente co
 
 - **String:** agent-based modeling investment strategies financial market
 - **Resultados aproximados:** 2
+- Apens um dos dois tem sentido:
+
+Title:
+Linking Agent-Based Models and Stochastic Models of Financial Markets
+
+Abstract:
+Proceedings of the National Academy of Sciences 109, 8388-8393 (2012)
+Number of pages: 6 Posted: *18 Dec 2012*
+
+Authors:
+Ling Feng, Baowen Li, Boris Podobnik, Tobias Preis and H. Eugene Stanley
+
+Publisher:
+National Academy of Sciences
+
+Boston University, National University of Singapore (NUS), Boston University, Data Science Lab, Behavioural Science, Warwick Business School and Boston University - Center for Polymer Studies
+Keywords: Complex Systems, Power Law, Scaling Laws, Agent-Based Models, Stochastic Processes
 
 ---
 

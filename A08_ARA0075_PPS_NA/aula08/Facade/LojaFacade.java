@@ -9,6 +9,8 @@ public class LojaFacade {
         if (estoque.verificarDisponibilidade()) {
             pagamento.processarPagamento();
             envio.enviar();
+        } else{
+            System.out.println("Filme indisponível.");
         }
     }
 }

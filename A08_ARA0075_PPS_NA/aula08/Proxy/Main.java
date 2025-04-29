@@ -5,7 +5,7 @@ public class Main {
         CotacaoService service = new CotacaoProxy();
 
         System.out.println("Cotação: " + service.getCotacaoDolar());
-        Thread.sleep(1000);
+        Thread.sleep(4000);
         System.out.println("Cotação: " + service.getCotacaoDolar());
     }
 }
