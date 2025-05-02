@@ -5,10 +5,11 @@ import os
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 DB_PATH = 'banco.db'
-
+caminho = os.path.dirname(os.path.abspath(__file__))
+caminho = os.path.join(caminho, "banco.db")
 # Inicializa o banco
 def init_db():
-    with sqlite3.connect(DB_PATH) as conn:
+    with sqlite3.connect(caminho) as conn:
         c = conn.cursor()
         c.execute('''CREATE TABLE IF NOT EXISTS turmas (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -138,8 +139,8 @@ def ver_grupos(nome):
     return jsonify({'grupos': grupos})
 
 if __name__ == '__main__':
-    os.makedirs('templates', exist_ok=True)
-    os.makedirs('static', exist_ok=True)
+    #os.makedirs('templates', exist_ok=True)
+    #os.makedirs('static', exist_ok=True)
     init_db()
     app.run(debug=True)
     # para rodar o servidor, execute o seguinte comando no terminal o fastAPI:

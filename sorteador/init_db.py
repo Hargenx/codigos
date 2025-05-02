@@ -4,9 +4,11 @@ from pathlib import Path
 
 
 DB_PATH = Path(__file__).parent / 'banco.db'
+caminho = os.path.dirname(os.path.abspath(__file__))
+caminho = os.path.join(caminho, "banco.db")
 
 def init_db():
-    with sqlite3.connect(DB_PATH) as conn:
+    with sqlite3.connect(caminho) as conn:
         c = conn.cursor()
         c.execute('''CREATE TABLE IF NOT EXISTS turmas (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
