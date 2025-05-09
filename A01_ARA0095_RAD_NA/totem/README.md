@@ -46,6 +46,7 @@ totem/
 ├── view/
 │   ├── tela_entrada.py
 │   ├── tela_pagamento.py
+│   ├── teclado_virtual.py
 │   └── tela_saida.py
 ├── data/
 │   ├── tickets.json
