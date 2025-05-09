@@ -1,1 +1,32 @@
-./test
+# Bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+test/
+
+# Arquivos temporários
+*.log
+*.tmp
+*.bak
+
+# Ambiente virtual (se criado)
+.venv/
+env/
+venv/
+
+# Dados gerados
+/data/tickets.json
+/data/log_estacionamento.log
+/data/comprovantes/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# PyInstaller (caso empacote para exe)
+dist/
+build/
+*.spec

@@ -35,7 +35,7 @@ O projeto está organizado segundo o padrão **MVC**:
 
 ```terminal
 
-totem_estacionamento/
+totem/
 ├── controller/
 │   ├── controlador_entrada.py
 │   └── controlador_totem.py
