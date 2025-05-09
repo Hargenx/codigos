@@ -1,0 +1,20 @@
+				ESTACIONAMENTO CENTRAL
+				CNPJ: 12.345.678/0001-99
+		Av. das Garagens, 123 - Centro
+				Tel: (21) 99999-0000
+
+-------------------------------
+TICKET: 2A62AEE1
+PLACA: JLB0289
+
+ENTRADA: 2025-05-08 18:42:28
+PAGAMENTO: 2025-05-09 11:25:24
+
+VALOR PAGO:       R$ 25.00
+LIBERADO ATÉ: 2025-05-09 11:55:24
+-------------------------------
+
+Pagamento via: Cartão
+Terminal: TOTEM-01
+
+Obrigado por utilizar nossos serviços!

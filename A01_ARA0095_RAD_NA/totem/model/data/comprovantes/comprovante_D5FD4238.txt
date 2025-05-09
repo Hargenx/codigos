@@ -1,0 +1,20 @@
+				ESTACIONAMENTO CENTRAL
+				CNPJ: 12.345.678/0001-99
+		Av. das Garagens, 123 - Centro
+				Tel: (21) 99999-0000
+
+-------------------------------
+TICKET: D5FD4238
+PLACA: BHB8149
+
+ENTRADA: 2025-05-09 11:23:01
+PAGAMENTO: 2025-05-09 11:26:19
+
+VALOR PAGO:       R$ 5.00
+LIBERADO ATÉ: 2025-05-09 11:41:19
+-------------------------------
+
+Pagamento via: Cartão
+Terminal: TOTEM-01
+
+Obrigado por utilizar nossos serviços!

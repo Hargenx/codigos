@@ -8,18 +8,24 @@ Este é um **projeto exemplo** desenvolvido com fins didáticos para alunos de g
 
 ### Entrada de Veículos
 
-- Geração automática de tickets com placas simuladas.
-- Registro de data/hora de entrada.
-- Armazenamento persistente em arquivo JSON.
-- Registro de log para auditoria.
+- Geração automática de ticket com placa aleatória
+- Registro de data/hora de entrada
+- Armazenamento em `data/tickets.json`
+- Registro de log em `data/log_estacionamento.log`
 
 ### Totem de Pagamento
 
-- Interface gráfica para simular o pagamento de estacionamento.
-- Consulta de ticket, cálculo de valor pela permanência.
-- Pagamento via Cartão ou PIX (simulado).
-- Geração de comprovante em `.txt` estilo cupom fiscal.
-- Registro em log e controle de tempo para liberação.
+- Interface visual inspirada em totens reais
+- Consulta de ticket e cálculo do valor com base no tempo
+- Simula pagamento via Cartão ou PIX
+- Gera comprovante de pagamento em `.txt` estilo cupom fiscal
+- Atualiza o ticket como "pago" e define tempo de liberação
+
+### Saída de Veículos
+
+- Digita o ticket e verifica se está liberado para saída
+- Compara o horário atual com o campo `liberado_ate`
+- Exibe mensagem de autorização ou expiração
 
 ---
 
@@ -29,15 +35,33 @@ O projeto está organizado segundo o padrão **MVC**:
 
 ```terminal
 
-totem\_estacionamento/
-├── controller/       # Lógica de controle
-├── model/            # Regras de negócio e persistência
-├── view/             # Interfaces gráficas (Tkinter)
-├── data/             # Dados persistentes (JSON, log e comprovantes)
-├── main.py           # Inicia o totem de pagamento
-└── main\_entrada.py   # Inicia o painel de entrada
+totem_estacionamento/
+├── controller/
+│   ├── controlador_entrada.py
+│   └── controlador_totem.py
+├── model/
+│   ├── pagamento.py
+│   ├── persistencia.py
+│   └── ticket.py
+├── view/
+│   ├── tela_entrada.py
+│   ├── tela_pagamento.py
+│   └── tela_saida.py
+├── data/
+│   ├── tickets.json
+│   ├── log_estacionamento.log
+│   └── comprovantes/
+├── main.py            # Totem de pagamento
+├── main_entrada.py    # Entrada de veículo
+└── main_saida.py      # Saída do veículo
 
 ````
+
+---
+
+### Requisitos
+
+- Python 3.8+
 
 ---
 
@@ -45,16 +69,12 @@ totem\_estacionamento/
 
 1. Certifique-se de ter o Python 3 instalado.
 2. Clone este repositório.
-3. Execute o painel de entrada com:
+3. Execute as partes conforme necessidade:
 
     ```bash
-    python main_entrada.py
-    ````
-
-4. Execute o totem de pagamento com:
-
-    ```bash
-    python main.py
+    python main_entrada.py   # Simula entrada do carro
+    python main.py           # Simula pagamento no totem
+    python main_saida.py     # Verifica liberação de saída
     ```
 
 ---
@@ -63,11 +83,14 @@ totem\_estacionamento/
 
 - Uso do padrão **MVC**
 - Boas práticas com funções, módulos e classes
+- Boas práticas com `type hints`, `docstrings`, `logging`
 - Persistência de dados com arquivos `.json`
 - Manipulação de datas e horários (`datetime`)
 - Geração de logs (`logging`)
 - Criação de interfaces com **Tkinter**
 - Simulação de sistema real: entrada, pagamento e saída
+- Geração de comprovantes e simulação de totens reais
+- Interface com Tkinter pensada para toque (touchscreen)
 
 ---
 
@@ -82,3 +105,5 @@ Este sistema é uma **simulação acadêmica**. Nenhuma integração real com si
 Prof. Raphael Mauricio Sanches de Jesus
 
 - Desenvolvedor de software e professor universitário.
+
+> Projeto 100% em Python com foco em aplicação educacional e experiência de uso inspirada em equipamentos reais.

@@ -3,46 +3,46 @@
         "ticket_id": "ADEF9873",
         "placa": "TKZ5728",
         "hora_entrada": "2025-05-08 18:42:20",
-        "pago": "nao",
-        "hora_pagamento": "",
-        "valor": "",
-        "liberado_ate": ""
+        "pago": "sim",
+        "hora_pagamento": "2025-05-09 11:02:31",
+        "valor": "25.00",
+        "liberado_ate": "2025-05-09 11:32:31"
     },
     {
         "ticket_id": "26FE1727",
         "placa": "UKJ3083",
         "hora_entrada": "2025-05-08 18:42:23",
-        "pago": "nao",
-        "hora_pagamento": "",
-        "valor": "",
-        "liberado_ate": ""
+        "pago": "sim",
+        "hora_pagamento": "2025-05-09 11:03:21",
+        "valor": "25.00",
+        "liberado_ate": "2025-05-09 11:33:21"
     },
     {
         "ticket_id": "474A2B47",
         "placa": "SCT9221",
         "hora_entrada": "2025-05-08 18:42:26",
-        "pago": "nao",
-        "hora_pagamento": "",
-        "valor": "",
-        "liberado_ate": ""
+        "pago": "sim",
+        "hora_pagamento": "2025-05-09 11:22:12",
+        "valor": "25.00",
+        "liberado_ate": "2025-05-09 11:52:12"
     },
     {
         "ticket_id": "2A62AEE1",
         "placa": "JLB0289",
         "hora_entrada": "2025-05-08 18:42:28",
-        "pago": "nao",
-        "hora_pagamento": "",
-        "valor": "",
-        "liberado_ate": ""
+        "pago": "sim",
+        "hora_pagamento": "2025-05-09 11:25:24",
+        "valor": "25.00",
+        "liberado_ate": "2025-05-09 11:55:24"
     },
     {
         "ticket_id": "0CCDDF75",
         "placa": "PZJ8469",
         "hora_entrada": "2025-05-08 18:42:30",
-        "pago": "nao",
-        "hora_pagamento": "",
-        "valor": "",
-        "liberado_ate": ""
+        "pago": "sim",
+        "hora_pagamento": "2025-05-09 11:22:25",
+        "valor": "25.00",
+        "liberado_ate": "2025-05-09 11:52:25"
     },
     {
         "ticket_id": "1FDF6B79",
@@ -66,10 +66,10 @@
         "ticket_id": "0BB8D8B9",
         "placa": "ONX9152",
         "hora_entrada": "2025-05-08 18:42:35",
-        "pago": "nao",
-        "hora_pagamento": "",
-        "valor": "",
-        "liberado_ate": ""
+        "pago": "sim",
+        "hora_pagamento": "2025-05-09 14:53:06",
+        "valor": "25.00",
+        "liberado_ate": "2025-05-09 15:23:06"
     },
     {
         "ticket_id": "988476AF",
@@ -88,5 +88,41 @@
         "hora_pagamento": "",
         "valor": "",
         "liberado_ate": ""
+    },
+    {
+        "ticket_id": "BC529A5A",
+        "placa": "ZCX6006",
+        "hora_entrada": "2025-05-09 11:20:57",
+        "pago": "nao",
+        "hora_pagamento": "",
+        "valor": "",
+        "liberado_ate": ""
+    },
+    {
+        "ticket_id": "713E4011",
+        "placa": "FVI0455",
+        "hora_entrada": "2025-05-09 11:20:58",
+        "pago": "nao",
+        "hora_pagamento": "",
+        "valor": "",
+        "liberado_ate": ""
+    },
+    {
+        "ticket_id": "958595F6",
+        "placa": "NAV7715",
+        "hora_entrada": "2025-05-09 11:21:00",
+        "pago": "sim",
+        "hora_pagamento": "2025-05-09 11:25:46",
+        "valor": "5.00",
+        "liberado_ate": "2025-05-09 11:40:46"
+    },
+    {
+        "ticket_id": "D5FD4238",
+        "placa": "BHB8149",
+        "hora_entrada": "2025-05-09 11:23:01",
+        "pago": "sim",
+        "hora_pagamento": "2025-05-09 11:26:19",
+        "valor": "5.00",
+        "liberado_ate": "2025-05-09 11:41:19"
     }
 ]

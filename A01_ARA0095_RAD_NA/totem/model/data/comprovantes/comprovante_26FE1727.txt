@@ -1,0 +1,20 @@
+				ESTACIONAMENTO CENTRAL
+				CNPJ: 12.345.678/0001-99
+		Av. das Garagens, 123 - Centro
+				Tel: (21) 99999-0000
+
+-------------------------------
+TICKET: 26FE1727
+PLACA: UKJ3083
+
+ENTRADA: 2025-05-08 18:42:23
+PAGAMENTO: 2025-05-09 11:03:21
+
+VALOR PAGO:       R$ 25.00
+LIBERADO ATÉ: 2025-05-09 11:33:21
+-------------------------------
+
+Pagamento via: Cartão
+Terminal: TOTEM-01
+
+Obrigado por utilizar nossos serviços!

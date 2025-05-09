@@ -1,0 +1,20 @@
+				ESTACIONAMENTO CENTRAL
+				CNPJ: 12.345.678/0001-99
+		Av. das Garagens, 123 - Centro
+				Tel: (21) 99999-0000
+
+-------------------------------
+TICKET: ADEF9873
+PLACA: TKZ5728
+
+ENTRADA: 2025-05-08 18:42:20
+PAGAMENTO: 2025-05-09 11:02:31
+
+VALOR PAGO:       R$ 25.00
+LIBERADO ATÉ: 2025-05-09 11:32:31
+-------------------------------
+
+Pagamento via: PIX
+Terminal: TOTEM-01
+
+Obrigado por utilizar nossos serviços!
