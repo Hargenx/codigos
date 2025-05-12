@@ -7,13 +7,13 @@ root.title("Exemplo com ttk")
 
 # Aplicar tema moderno
 style = ttk.Style()
-style.theme_use("clam")
+style.theme_use("classic")
 
 # Estilizar botão padrão TButton (cor do fundo afeta apenas em alguns temas e sistemas)
 style.configure(
     "TButton",
-    background="green",  # Nem todos os sistemas aplicam essa cor
-    foreground="white",
+    background="red",
+    foreground="black",
     padding=6,
     font=("Helvetica", 12, "bold"),
 )
