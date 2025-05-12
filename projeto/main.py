@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import messagebox
 from views.login_view import LoginView
 from database.db_manager import DatabaseManager
 
