@@ -1,0 +1,16 @@
+@startuml observer
+interface Observador {
+  + atualizar(temperatura: double)
+}
+
+class ExibidorTemperatura
+class SensorTemperatura {
+  - temperatura: double
+  - observadores: List<Observador>
+  + adicionarObservador(o: Observador)
+  + setTemperatura(temp: double)
+}
+
+SensorTemperatura --> Observador : notifica
+Observador <|.. ExibidorTemperatura
+@enduml
