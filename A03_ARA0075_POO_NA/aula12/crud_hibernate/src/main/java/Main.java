@@ -22,6 +22,6 @@ public class Main {
         dao.atualizar(novaPessoa);
 
         // Deletar
-        dao.deletar(novaPessoa);
+        //dao.deletar(novaPessoa);
     }
 }
