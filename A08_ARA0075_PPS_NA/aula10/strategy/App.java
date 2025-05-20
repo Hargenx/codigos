@@ -8,9 +8,9 @@ public class App {
         System.out.println("Sedex: " + pedido.calcularFrete(5));
 
         pedido.setFrete(new PAC());
-        System.out.println("PAC: " + pedido.calcularFrete(5));
+        System.out.println("PAC: " + pedido.calcularFrete(3));
 
         pedido.setFrete(new Transportadora());
-        System.out.println("Transportadora: " + pedido.calcularFrete(5));
+        System.out.println("Transportadora: " + pedido.calcularFrete(8));
     }
 }
