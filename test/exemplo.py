@@ -28,3 +28,14 @@ def two_sum_hash(array: list, target: int) -> int:
 print(two_sum_dumb([11, 15, 2, 7], 9))
 print(two_sum_sort([11, 15, 2, 7], 9))
 print(two_sum_hash([11, 15, 2, 7], 9))
+
+def median(l: list) -> float:
+    m = 0
+    if len(l) % 2 == 0:
+        m = (l[len(l) // 2] + l[len(l) // 2 - 1]) / 2
+    else:
+        m = l[len(l) // 2]
+    return m
+
+print(median([1, 2, 3, 4, 5]))
+print(median([5, 2, 36, 4]))

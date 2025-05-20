@@ -42,7 +42,6 @@ def exibir_usuarios():
         listbox.insert(tk.END, f"ID: {row[0]} | Nome: {row[1]} | Email: {row[2]}")
 
 def adicionar_callback():
-
     nome = entry_nome.get()
     email = entry_email.get()
     if not nome or not email:

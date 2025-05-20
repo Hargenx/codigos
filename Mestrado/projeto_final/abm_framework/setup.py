@@ -6,7 +6,7 @@ setup(
     packages=find_packages(),
     install_requires=[],
     author='Raphael M. S. de Jesus',
-    description='Framework genérica para simulações baseadas em agentes (ABM)',
+    description='Framework para simulações baseadas em agentes (ABM)',
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: MIT License'
