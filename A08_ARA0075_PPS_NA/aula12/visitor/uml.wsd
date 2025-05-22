@@ -1,0 +1,38 @@
+@startuml uml
+' Interfaces
+interface Cliente {
+  + aceitar(visitor: RelatorioClienteVisitor)
+}
+
+interface RelatorioClienteVisitor {
+  + visitar(pf: PessoaFisica)
+  + visitar(pj: PessoaJuridica)
+}
+
+' Classes concretas
+class PessoaFisica {
+  - nome: String
+  - cpf: String
+  + aceitar(visitor: RelatorioClienteVisitor)
+}
+
+class PessoaJuridica {
+  - razaoSocial: String
+  - cnpj: String
+  + aceitar(visitor: RelatorioClienteVisitor)
+}
+
+class GeradorRelatorio {
+  + visitar(pf: PessoaFisica)
+  + visitar(pj: PessoaJuridica)
+}
+
+' Relacionamentos
+Cliente <|.. PessoaFisica
+Cliente <|.. PessoaJuridica
+
+RelatorioClienteVisitor <|.. GeradorRelatorio
+PessoaFisica --> RelatorioClienteVisitor : aceitar()
+PessoaJuridica --> RelatorioClienteVisitor : aceitar()
+
+@enduml

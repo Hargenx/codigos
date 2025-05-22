@@ -1,0 +1,18 @@
+@startuml uml
+abstract class ImportadorArquivo {
+  + importar()
+  # abrirArquivo()
+  # lerDados()
+  # processarDados()
+  # fecharArquivo()
+}
+
+class ImportadorCSV {
+  + abrirArquivo()
+  + lerDados()
+  + processarDados()
+  + fecharArquivo()
+}
+
+ImportadorArquivo <|-- ImportadorCSV
+@enduml
