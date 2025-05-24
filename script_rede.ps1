@@ -5,14 +5,16 @@ $networkName = "ESTACIO-VISITANTES"
 Write-Host "Escolha a senha a ser aplicada para a rede $networkName :"
 Write-Host "1 - Senha 2014: estacio@2014"
 Write-Host "2 - Senha 2023: estacio@2023#"
+Write-Host "3 - Senha 2025: estacio@2025"
 
 # Lê a opção escolhida
-$option = Read-Host "Digite 1 ou 2"
+$option = Read-Host "Digite a opção desejada: "
 
 # Seleciona a senha conforme a opção
 switch ($option) {
     "1" { $password = "estacio@2014" }
     "2" { $password = "estacio@2023#" }
+    "3" { $password = "estacio@2025" }
     default {
         Write-Host "Opção inválida. Saindo..."
         exit
