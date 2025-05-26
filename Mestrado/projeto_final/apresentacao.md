@@ -203,7 +203,7 @@ Próximo passo:
 
 ## **10. Conclusão**
 
-A evolução do projeto transformou um simulador pontual em uma **framework profissional de simulações ABM**.
+A evolução do projeto transformou um simulador pontual em uma **framework simulações ABM**.
 
 - 🔧 Um ambiente de desenvolvimento limpo e modular.
 - 🚀 Potencial de escalabilidade para grandes simulações.
