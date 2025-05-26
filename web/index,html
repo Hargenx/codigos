@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Café Aroma - Desperte seus Sentidos</title>
+    <meta name="description" content="Café Aroma - O melhor café da cidade em um ambiente aconchegante" />
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Georgia', serif;
+        line-height: 1.6;
+        color: #2c1810;
+        overflow-x: hidden;
+      }
+
+      /* Navegação */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #8b4513;
+        text-decoration: none;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #2c1810;
+        font-weight: 500;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #8b4513;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(135deg, #f4e4bc 0%, #deb887 50%, #d2b48c 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        color: #2c1810;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .hero-content p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        color: #4a3228;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: #8b4513;
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        margin: 0 0.5rem;
+      }
+
+      .btn:hover {
+        background: #a0522d;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn-outline {
+        background: transparent;
+        border: 2px solid #8b4513;
+        color: #8b4513;
+      }
+
+      .btn-outline:hover {
+        background: #8b4513;
+        color: white;
+      }
+
+      /* Seções */
+      .section {
+        padding: 5rem 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+
+      .section h2 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 3rem;
+        color: #2c1810;
+      }
+
+      /* Menu */
+      .menu {
+        background: #fff8f0;
+      }
+
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .menu-item {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .menu-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .menu-item h3 {
+        color: #8b4513;
+        margin-bottom: 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      .menu-item .price {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #d2691e;
+        float: right;
+      }
+
+      .menu-item p {
+        color: #666;
+        margin-top: 1rem;
+      }
+
+      /* Sobre */
+      .about {
+        background: linear-gradient(45deg, #f4e4bc, #deb887);
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #2c1810;
+      }
+
+      .about-image {
+        text-align: center;
+        font-size: 8rem;
+        color: #8b4513;
+      }
+
+      /* Contato */
+      .contact {
+        background: white;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .contact-item {
+        text-align: center;
+        padding: 2rem;
+        background: #fff8f0;
+        border-radius: 15px;
+      }
+
+      .contact-item h3 {
+        color: #8b4513;
+        margin-bottom: 1rem;
+      }
+
+      /* Footer */
+      footer {
+        background: #2c1810;
+        color: #d2b48c;
+        text-align: center;
+        padding: 3rem 0;
+      }
+
+      /* Responsivo */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-content p {
+          font-size: 1.1rem;
+          padding: 0 1rem;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .about-image {
+          font-size: 4rem;
+        }
+
+        .section {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+      }
+
+      /* Animações */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-content {
+        animation: fadeInUp 1s ease-out;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navegação -->
+    <nav>
+      <div class="nav-container">
+        <a href="#home" class="logo">☕ Café Aroma</a>
+        <ul class="nav-links">
+          <li><a href="#home">Início</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">Sobre</a></li>
+          <li><a href="#contact">Contato</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Desperte seus Sentidos</h1>
+        <p>Cada xícara conta uma história. Venha descobrir sabores únicos em um ambiente aconchegante, onde cada grão é selecionado com carinho especial.</p>
+        <a href="#menu" class="btn">Ver Menu</a>
+        <a href="#about" class="btn btn-outline">Nossa História</a>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="menu">
+      <div class="section">
+        <h2>Nosso Menu</h2>
+        <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
+          Cafés especiais preparados com grãos selecionados e métodos artesanais
+        </p>
+        
+        <div class="menu-grid">
+          <div class="menu-item">
+            <h3>Espresso Clássico <span class="price">R$ 8</span></h3>
+            <p>Intenso e aromático, preparado na medida certa para despertar seus sentidos.</p>
+          </div>
+          
+          <div class="menu-item">
+            <h3>Cappuccino Cremoso <span class="price">R$ 12</span></h3>
+            <p>Espresso encorpado com espuma de leite vaporizado e toque de canela.</p>
+          </div>
+          
+          <div class="menu-item">
+            <h3>Café com Leite <span class="price">R$ 10</span></h3>
+            <p>Equilíbrio perfeito entre café forte e leite cremoso vaporizado.</p>
+          </div>
+          
+          <div class="menu-item">
+            <h3>Mocha Especial <span class="price">R$ 15</span></h3>
+            <p>Café espresso com chocolate belga e chantilly artesanal.</p>
+          </div>
+          
+          <div class="menu-item">
+            <h3>Affogato <span class="price">R$ 18</span></h3>
+            <p>Sorvete de baunilha artesanal "afogado" em espresso quente.</p>
+          </div>
+          
+          <div class="menu-item">
+            <h3>Cold Brew <span class="price">R$ 14</span></h3>
+            <p>Café extraído a frio por 24h, suave e refrescante.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="about" class="about">
+      <div class="section">
+        <h2>Nossa História</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>Há mais de 10 anos, o Café Aroma nasceu do sonho de criar um espaço onde as pessoas pudessem se conectar através do amor pelo café. Começamos como uma pequena torrefação familiar e hoje somos reconhecidos pela qualidade excepcional dos nossos grãos.</p>
+            
+            <p>Cada café que servimos é cuidadosamente selecionado de fazendas sustentáveis, torrado artesanalmente e preparado com técnicas que realçam os sabores únicos de cada origem. Nosso compromisso é oferecer não apenas uma bebida, mas uma experiência.</p>
+            
+            <p><strong>10+ anos de experiência</strong> servindo os melhores cafés da cidade com <strong>15.000+ clientes satisfeitos</strong>.</p>
+          </div>
+          <div class="about-image">
+            ☕
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contact" class="contact">
+      <div class="section">
+        <h2>Visite-nos</h2>
+        <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 2rem;">
+          Estamos sempre prontos para recebê-lo em nosso ambiente aconchegante
+        </p>
+        
+        <div class="contact-grid">
+          <div class="contact-item">
+            <h3>📍 Endereço</h3>
+            <p>Rua dos Cafés, 123<br>Centro, São Paulo - SP</p>
+          </div>
+          
+          <div class="contact-item">
+            <h3>🕒 Horário</h3>
+            <p>Segunda a Sexta: 6h às 22h<br>Sábado e Domingo: 7h às 23h</p>
+          </div>
+          
+          <div class="contact-item">
+            <h3>📞 Contato</h3>
+            <p>(11) 9999-8888<br>contato@cafearoma.com.br</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2024 Café Aroma. Todos os direitos reservados.</p>
+      <p>Despertando sentidos desde 2014</p>
+    </footer>
+
+    <script>
+      // Smooth scrolling para os links da navegação
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Destacar link ativo na navegação
+      window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.style.color = '';
+          if (link.getAttribute('href') === `#${current}`) {
+            link.style.color = '#8b4513';
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
