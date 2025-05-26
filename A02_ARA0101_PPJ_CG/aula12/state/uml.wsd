@@ -1,0 +1,35 @@
+@startuml uml
+interface EstadoPedido {
+  + avancar(pedido: Pedido)
+  + cancelar(pedido: Pedido)
+}
+
+class Novo {
+  + avancar(pedido: Pedido)
+  + cancelar(pedido: Pedido)
+}
+
+class Processado {
+  + avancar(pedido: Pedido)
+  + cancelar(pedido: Pedido)
+}
+
+class Entregue {
+  + avancar(pedido: Pedido)
+  + cancelar(pedido: Pedido)
+}
+
+class Pedido {
+  - estado: EstadoPedido
+  + Pedido()
+  + setEstado(estado: EstadoPedido)
+  + avancar()
+  + cancelar()
+}
+
+EstadoPedido <|.. Novo
+EstadoPedido <|.. Processado
+EstadoPedido <|.. Entregue
+Pedido --> EstadoPedido : usa
+
+@enduml
