@@ -1,0 +1,25 @@
+@startuml exercicio
+
+abstract class ItemBiblioteca {
+    - titulo: String
+    - ano: int
+    + getTitulo(): String
+    + getAno(): int
+    + toString(): String
+}
+
+class Livro {
+    - autor: String
+    + getAutor(): String
+    + toString(): String
+}
+
+class Revista {
+    - edicao: int
+    + getEdicao(): int
+    + toString(): String
+}
+
+ItemBiblioteca <|-- Livro
+ItemBiblioteca <|-- Revista
+@enduml

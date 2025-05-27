@@ -1,6 +1,6 @@
-# ✅ **Resumo do Capítulo 6 – Elaboração da Pesquisa Científica em Informática na Educação**
+# ✅ **Anotações do Capítulo 6 – Elaboração da Pesquisa Científica em Informática na Educação**
 
-Este capítulo apresenta um guia prático para mestrandos e doutorandos brasileiros na área de Informática na Educação. Ele descreve as principais etapas para a construção de uma pesquisa científica sólida, incluindo a escolha do tema, definição do problema, formulação de questões e hipóteses, definição de objetivos, embasamento teórico, escolha do método, coleta e análise de dados, e apresentação dos resultados. Também diferencia os tipos de pesquisa (exploratória, descritiva e explicativa) e discute a importância de alinhar essas etapas com o tipo de estudo. O capítulo enfatiza ainda a distinção entre pesquisa científica e simples desenvolvimento de produtos tecnológicos.
+O guia prático para mestrandos e doutorandos brasileiros na área de Informática na Educação. Descreve as principais etapas para a construção de uma pesquisa científica sólida, incluindo a escolha do tema, definição do problema, formulação de questões e hipóteses, definição de objetivos, embasamento teórico, escolha do método, coleta e análise de dados, e apresentação dos resultados. Também diferencia os tipos de pesquisa (exploratória, descritiva e explicativa) e discute a importância de alinhar essas etapas com o tipo de estudo. O capítulo enfatiza ainda a distinção entre pesquisa científica e simples desenvolvimento de produtos tecnológicos.
 
 ---
 

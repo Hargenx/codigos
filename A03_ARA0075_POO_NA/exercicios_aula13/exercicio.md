@@ -117,3 +117,52 @@
 * Interfaces para estratégias.
 * Evitar `if`/`else` extensivos.
 * Boa separação entre contexto e estratégias.
+
+## 🧩 **Desafio: Sistema de Controle de Biblioteca (UML)**
+
+### 🎯 **Objetivo**
+
+Implementar, em Java, o sistema de controle de uma biblioteca com base na UML fornecida abaixo.
+
+---
+
+### 📘 **UML (Diagrama de Classes)**
+
+![alt text](image.png)
+
+### 🧪 **O que deve ser feito**
+
+1. Criar a superclasse `ItemBiblioteca`.
+2. Criar as subclasses `Livro` e `Revista` conforme o diagrama.
+3. Criar uma classe `BibliotecaApp` com `main`, que:
+
+   * Cadastre ao menos 2 livros e 2 revistas.
+   * Adicione todos os itens em uma `List<ItemBiblioteca>`.
+   * Imprima todos os itens usando polimorfismo.
+
+---
+
+### 🔍 **Requisitos Técnicos**
+
+* Usar **encapsulamento** correto (`private` + `getters`).
+* A classe `ItemBiblioteca` deve ser **abstrata**, pois não instanciamos diretamente um item genérico.
+* O método `toString()` deve ser sobrescrito corretamente nas subclasses.
+* Aplicar **boas práticas de nomeação e organização**.
+
+---
+
+### ✅ **Critérios de Avaliação**
+
+| Critério                              | Peso |
+| ------------------------------------- | ---- |
+| Implementação correta da UML          | 30%  |
+| Uso correto de herança e polimorfismo | 25%  |
+| Clareza e organização do código       | 20%  |
+| Encapsulamento e boas práticas        | 15%  |
+| Funcionalidade da classe principal    | 10%  |
+
+---
+
+### 💡 **Dica**
+
+Esse tipo de exercício é comum em entrevistas técnicas. Concentre-se em **traduzir corretamente a UML** para o código, entendendo as relações entre as classes, e sempre escreva código **limpo e comentado**.
