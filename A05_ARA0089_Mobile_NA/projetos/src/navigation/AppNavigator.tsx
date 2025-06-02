@@ -2,12 +2,12 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import PlayerListScreen from "../screens/PlayerListScreen";
 import PlayerFormScreen from "../screens/PlayerFormScreen";
-import { Player } from "../types/player"; // Importar o tipo Player
+import { Player as PlayerType } from "../types/player"; // Importar Player como PlayerType
 
 // Definindo os tipos para os parâmetros das rotas
 export type RootStackParamList = {
-  PlayerList: undefined; // Tela PlayerList não recebe parâmetros obrigatórios
-  PlayerForm: { playerToEdit?: Player | (Player & Realm.Object) }; // playerToEdit é opcional
+  PlayerList: undefined;
+  PlayerForm: { playerToEdit?: PlayerType }; // playerToEdit agora é um PlayerType (POJO)
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

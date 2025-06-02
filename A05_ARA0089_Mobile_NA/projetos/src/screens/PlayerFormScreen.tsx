@@ -13,11 +13,8 @@ import Realm, { BSON } from "realm";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { getRealm } from "../realm/realmConfig";
-import { Player } from "../types/player";
+import { Player as PlayerType } from "../types/player";
 import { RootStackParamList } from "../navigation/AppNavigator";
-// Para o Picker, você pode precisar de uma lib externa ou criar um customizado.
-// Por simplicidade, usaremos TextInput, mas idealmente seria um Picker.
-// Ex: import {Picker} from '@react-native-picker/picker';
 
 type PlayerFormScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -25,28 +22,31 @@ type PlayerFormScreenNavigationProp = NativeStackNavigationProp<
 >;
 type PlayerFormScreenRouteProp = RouteProp<RootStackParamList, "PlayerForm">;
 
-const POSITIONS: Player["position"][] = [
+type RealmPlayer = PlayerType & Realm.Object<PlayerType>;
+
+const POSITIONS: PlayerType["position"][] = [
   "Goleiro",
   "Defensor",
   "Meio-campo",
   "Atacante",
   "Indefinido",
 ];
-const SKILL_LEVELS: Player["skillLevel"][] = [1, 2, 3, 4, 5];
+const SKILL_LEVELS: PlayerType["skillLevel"][] = [1, 2, 3, 4, 5];
 
 const PlayerFormScreen = () => {
   const navigation = useNavigation<PlayerFormScreenNavigationProp>();
   const route = useRoute<PlayerFormScreenRouteProp>();
-  const playerToEdit = route.params?.playerToEdit;
+  const playerToEditFromRoute = route.params?.playerToEdit;
 
   const [realmInstance, setRealmInstance] = useState<Realm | null>(null);
-  const [name, setName] = useState(playerToEdit?.name || "");
-  const [position, setPosition] = useState<Player["position"]>(
-    playerToEdit?.position || "Indefinido"
+  const [name, setName] = useState(playerToEditFromRoute?.name || "");
+  const [position, setPosition] = useState<PlayerType["position"]>(
+    playerToEditFromRoute?.position || "Indefinido"
   );
-  const [skillLevel, setSkillLevel] = useState<Player["skillLevel"]>(
-    playerToEdit?.skillLevel || 3
+  const [skillLevel, setSkillLevel] = useState<PlayerType["skillLevel"]>(
+    playerToEditFromRoute?.skillLevel || 3
   );
+  const [editingId, setEditingId] = useState<BSON.ObjectId | null>(null);
 
   useEffect(() => {
     const initRealm = async () => {
@@ -60,11 +60,18 @@ const PlayerFormScreen = () => {
       }
     };
     initRealm();
-  }, [navigation]);
+
+    if (playerToEditFromRoute?._id) {
+      // Certifica que _id é um BSON.ObjectId. O método toJSON() deve preservar isso.
+      // Se vier como string, precisa ser convertido: new BSON.ObjectId(playerToEditFromRoute._id as string)
+      // Assumindo que toJSON() mantém o tipo ou que o _id na PlayerType é sempre ObjectId
+      setEditingId(playerToEditFromRoute._id as BSON.ObjectId);
+    }
+  }, [navigation, playerToEditFromRoute]);
 
   const handleSavePlayer = useCallback(async () => {
-    if (!realmInstance) {
-      Alert.alert("Erro", "Banco de dados não está pronto.");
+    if (!realmInstance || realmInstance.isClosed) {
+      Alert.alert("Erro", "Banco de dados não está pronto ou está fechado.");
       return;
     }
     if (name.trim() === "") {
@@ -74,14 +81,11 @@ const PlayerFormScreen = () => {
 
     try {
       realmInstance.write(() => {
-        if (playerToEdit) {
-          // Edição
-          // Certifique-se que playerToEdit é um objeto Realm gerenciado
-          // Se veio da navegação, pode ser um objeto JS puro. Precisamos buscar o objeto Realm.
-          const playerInRealm = realmInstance.objectForPrimaryKey<Player>(
+        if (editingId) {
+          const playerInRealm = realmInstance.objectForPrimaryKey<PlayerType>(
             "Player",
-            playerToEdit._id
-          );
+            editingId
+          ) as RealmPlayer | null;
           if (playerInRealm) {
             playerInRealm.name = name.trim();
             playerInRealm.position = position;
@@ -91,8 +95,7 @@ const PlayerFormScreen = () => {
             return;
           }
         } else {
-          // Criação
-          realmInstance.create<Player>("Player", {
+          realmInstance.create<PlayerType>("Player", {
             _id: new BSON.ObjectId(),
             name: name.trim(),
             position,
@@ -101,14 +104,13 @@ const PlayerFormScreen = () => {
           });
         }
       });
-      navigation.goBack(); // Voltar para a lista
+      navigation.goBack();
     } catch (error) {
       console.error("Falha ao salvar jogador:", error);
       Alert.alert("Erro", "Não foi possível salvar o jogador.");
     }
-  }, [realmInstance, name, position, skillLevel, playerToEdit, navigation]);
+  }, [realmInstance, name, position, skillLevel, editingId, navigation]);
 
-  // Simples botões para simular um Picker
   const renderPositionSelector = () => (
     <View style={styles.selectorContainer}>
       <Text style={styles.label}>Posição:</Text>
@@ -138,13 +140,14 @@ const PlayerFormScreen = () => {
 
   const renderSkillSelector = () => (
     <View style={styles.selectorContainer}>
-      <Text style={styles.label}>Nível de Habilidade:</Text>
+      <Text style={styles.label}>Nível de Habilidade (1-5):</Text>
       <View style={styles.optionsContainer}>
         {SKILL_LEVELS.map((lvl) => (
           <TouchableOpacity
             key={lvl}
             style={[
               styles.optionButton,
+              styles.skillButton,
               skillLevel === lvl && styles.optionButtonSelected,
             ]}
             onPress={() => setSkillLevel(lvl)}
@@ -163,8 +166,7 @@ const PlayerFormScreen = () => {
     </View>
   );
 
-  if (!realmInstance && !playerToEdit) {
-    // Se for edição, podemos mostrar o form mesmo sem realm ainda, pois os dados já existem
+  if (!realmInstance && !playerToEditFromRoute) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.loadingContainer}>
@@ -176,14 +178,18 @@ const PlayerFormScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        keyboardShouldPersistTaps="handled"
+      >
         <View style={styles.formGroup}>
           <Text style={styles.label}>Nome do Jogador:</Text>
           <TextInput
             style={styles.input}
             value={name}
             onChangeText={setName}
-            placeholder="Ex: Neymar Jr."
+            placeholder="Ex: Pelé"
+            autoCapitalize="words"
           />
         </View>
 
@@ -192,7 +198,7 @@ const PlayerFormScreen = () => {
 
         <TouchableOpacity style={styles.saveButton} onPress={handleSavePlayer}>
           <Text style={styles.saveButtonText}>
-            {playerToEdit ? "Salvar Alterações" : "Adicionar Jogador"}
+            {editingId ? "Salvar Alterações" : "Adicionar Jogador"}
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -212,6 +218,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     padding: 20,
+    paddingBottom: 40,
   },
   formGroup: {
     marginBottom: 20,
@@ -233,29 +240,38 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   selectorContainer: {
-    marginBottom: 20,
+    marginBottom: 25,
   },
   optionsContainer: {
     flexDirection: "row",
-    flexWrap: "wrap", // Permite que os botões quebrem linha
+    flexWrap: "wrap",
+    justifyContent: "flex-start",
   },
   optionButton: {
-    backgroundColor: "#e0e0e0",
+    backgroundColor: "#e9ecef",
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 20,
     marginRight: 10,
     marginBottom: 10,
+    borderWidth: 1,
+    borderColor: "#ced4da",
+  },
+  skillButton: {
+    minWidth: 40,
+    justifyContent: "center",
+    alignItems: "center",
   },
   optionButtonSelected: {
     backgroundColor: "#6200ee",
+    borderColor: "#6200ee",
   },
   optionButtonText: {
     fontSize: 14,
-    color: "#333",
+    color: "#212529",
   },
   optionButtonTextSelected: {
-    color: "#fff",
+    color: "#ffffff",
     fontWeight: "bold",
   },
   saveButton: {
@@ -264,6 +280,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: "center",
     marginTop: 20,
+    elevation: 2,
   },
   saveButtonText: {
     color: "#000",

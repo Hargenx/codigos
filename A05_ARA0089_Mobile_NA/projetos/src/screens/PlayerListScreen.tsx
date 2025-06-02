@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import {
   View,
   Text,
@@ -26,24 +26,18 @@ type RealmPlayer = PlayerType & Realm.Object<PlayerType>;
 const PlayerListScreen = () => {
   const navigation = useNavigation<PlayerListScreenNavigationProp>();
   const [realmInstance, setRealmInstance] = useState<Realm | null>(null);
-  // O estado 'players' agora armazena um array de objetos Player (que podem ser gerenciados pelo Realm)
   const [players, setPlayers] = useState<RealmPlayer[]>([]);
-  // Ref para manter a coleção Realm.Results original para gerenciar listeners
   const playerCollectionRef = useRef<Realm.Results<RealmPlayer> | null>(null);
 
   const loadPlayers = useCallback(async (currentRealm: Realm) => {
     try {
-      // Busca os objetos Player, especificando o tipo para o Realm
       const playerObjects = currentRealm
         .objects<PlayerType>("Player")
         .sorted("name") as Realm.Results<RealmPlayer>;
-      playerCollectionRef.current = playerObjects; // Armazena a referência à coleção Realm
-      setPlayers([...playerObjects]); // Converte Realm.Results para um array e define o estado
+      playerCollectionRef.current = playerObjects;
+      setPlayers([...playerObjects]);
 
-      // Adiciona um listener à coleção Realm original
       playerObjects.addListener((collection) => {
-        // Quando a coleção mudar, atualiza o estado 'players' com um novo array
-        // Isto é crucial para o React detetar a mudança e re-renderizar
         setPlayers([...collection]);
       });
     } catch (error) {
@@ -68,19 +62,14 @@ const PlayerListScreen = () => {
       initRealm();
 
       return () => {
-        // Limpa o listener da coleção Realm quando a tela perde o foco ou é desmontada
         if (
           playerCollectionRef.current &&
           typeof playerCollectionRef.current.removeAllListeners === "function"
         ) {
           playerCollectionRef.current.removeAllListeners();
         }
-        // Nota: A instância do Realm (realmInstance) não é fechada aqui.
-        // O gerenciamento do ciclo de vida da instância do Realm (abrir/fechar)
-        // pode ser mais complexo e depende da arquitetura do app (e.g., global, por tela).
-        // Para este exemplo, assumimos que `getRealm` gerencia ou reutiliza instâncias.
       };
-    }, [loadPlayers]) // loadPlayers é uma dependência
+    }, [loadPlayers])
   );
 
   const handleDeletePlayer = useCallback(
@@ -102,7 +91,6 @@ const PlayerListScreen = () => {
                 realmInstance.write(() => {
                   realmInstance.delete(playerToDelete);
                 });
-                // A lista será atualizada automaticamente pelo listener em playerCollectionRef.current
               } catch (error) {
                 console.error("Falha ao excluir jogador:", error);
                 Alert.alert("Erro", "Não foi possível excluir o jogador.");
@@ -118,7 +106,6 @@ const PlayerListScreen = () => {
   const renderPlayerItem = ({ item }: { item: RealmPlayer }) => (
     <TouchableOpacity
       style={styles.playerItem}
-      // Passa um objeto JavaScript simples (POJO) para a tela de formulário
       onPress={() =>
         navigation.navigate("PlayerForm", {
           playerToEdit: item.toJSON() as unknown as PlayerType,
@@ -155,7 +142,7 @@ const PlayerListScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={players} // Agora 'players' é (PlayerType & Realm.Object<PlayerType>)[]
+        data={players}
         renderItem={renderPlayerItem}
         keyExtractor={(item) => item._id.toHexString()}
         ListEmptyComponent={
@@ -167,8 +154,6 @@ const PlayerListScreen = () => {
         style={styles.addButton}
         onPress={() => navigation.navigate("PlayerForm", {})}
       >
-        {" "}
-        {/* Não passa playerToEdit para criar novo */}
         <Text style={styles.addButtonText}>Adicionar Jogador</Text>
       </TouchableOpacity>
     </SafeAreaView>
@@ -200,8 +185,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   playerDetailsContainer: {
-    // Container para os textos do jogador
-    flex: 1, // Permite que o nome do jogador ocupe o espaço necessário
+    flex: 1,
   },
   playerName: {
     fontSize: 18,
@@ -221,7 +205,7 @@ const styles = StyleSheet.create({
     height: 30,
     justifyContent: "center",
     alignItems: "center",
-    marginLeft: 10, // Espaço entre os detalhes do jogador e o botão
+    marginLeft: 10,
   },
   deleteButtonTextSmall: {
     color: "#fff",
@@ -231,13 +215,12 @@ const styles = StyleSheet.create({
   addButton: {
     backgroundColor: "#6200ee",
     paddingVertical: 15,
-    paddingHorizontal: 20, // Aumentado para melhor toque
-    borderRadius: 30, // Mais arredondado
+    paddingHorizontal: 20,
+    borderRadius: 30,
     position: "absolute",
-    bottom: 25, // Ajustado
-    right: 25, // Ajustado
-    elevation: 5, // Sombra um pouco maior
-    // Adicionando sombra para iOS também (opcional)
+    bottom: 25,
+    right: 25,
+    elevation: 5,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
