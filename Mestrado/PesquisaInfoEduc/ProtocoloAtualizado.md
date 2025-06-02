@@ -13,6 +13,8 @@ Investigar como os modelos baseados em agentes (ABM) têm sido utilizados para s
 **Pergunta de Pesquisa:**  
 Como os modelos ABM têm sido aplicados para simulações de investimentos no mercado financeiro?
 
+“Quais metodologias e aplicações de modelos ABM têm sido utilizadas em simulações de investimentos no mercado financeiro no período de 2015 a 2025, e quais lacunas metodológicas ainda persistem na literatura?”
+
 ---
 
 ## 2. Critérios de Inclusão e Exclusão
