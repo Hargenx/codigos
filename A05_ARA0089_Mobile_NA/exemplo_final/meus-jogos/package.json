@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "expo": "~53.0.9",
+    "expo-sqlite": "~15.2.10",
     "expo-status-bar": "~2.2.3",
+    "meus-jogos": "file:",
     "react": "19.0.0",
-    "react-native": "0.79.2",
-    "expo-sqlite": "~15.2.10"
+    "react-native": "0.79.2"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",

@@ -1,0 +1,59 @@
+@startuml exemplo grasp
+' Interfaces
+interface MetodoPagamento {
+  + pagar(valor: double)
+}
+
+' Classes de domínio
+class Produto {
+  - nome: String
+  - preco: double
+}
+
+class ItemPedido {
+  - produto: Produto
+  - quantidade: int
+  + subtotal(): double
+}
+
+class Pedido {
+  - itens: List<ItemPedido>
+  + adicionarItem(produto: Produto, qtde: int)
+  + calcularTotal(): double
+}
+
+class Cliente {
+  - nome: String
+}
+
+' Implementações de pagamento
+class PagamentoPix {
+  + pagar(valor: double)
+}
+
+class PagamentoCartao {
+  + pagar(valor: double)
+}
+
+' Repositório (Invenção Pura)
+class ClienteRepository {
+  + buscarPorId(id: String): Cliente
+}
+
+' Controlador
+class PedidoController {
+  - metodo: MetodoPagamento
+  - clienteRepo: ClienteRepository
+  + realizarPedido(clienteId: String, produto: Produto, qtde: int)
+}
+
+' Relacionamentos
+Pedido --> "1..*" ItemPedido
+ItemPedido --> Produto
+PedidoController --> MetodoPagamento
+PedidoController --> ClienteRepository
+ClienteRepository --> Cliente
+MetodoPagamento <|.. PagamentoPix
+MetodoPagamento <|.. PagamentoCartao
+
+@enduml
