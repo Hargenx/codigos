@@ -1,0 +1,22 @@
+@startuml uml
+
+class Funcionario {
+  - nome: String
+  - salarioBase: double
+  + calcularSalario(): double
+}
+
+class Desenvolvedor {
+  - linguagem: String
+  + calcularSalario(): double
+}
+
+class Gerente {
+  - bonus: double
+  + calcularSalario(): double
+}
+
+Funcionario <|-- Desenvolvedor
+Funcionario <|-- Gerente
+
+@enduml
