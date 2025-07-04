@@ -33,7 +33,7 @@ Identificar metodologias, estratégias de modelagem e validação empírica util
 
 **Pontos fortes:**
 
-* As bases de dados serão Web of Science, Scopus, IEEE Xplore e Google Scholar.
+* As bases de dados serão Web of Science, Scopus e IEEE Xplore.
 * Os termos principais (“Agent-Based Modeling”, “ABM” etc.) cobrem a terminologia-chave.
 
 **Detalhamento adicional:**
@@ -76,13 +76,11 @@ Identificar metodologias, estratégias de modelagem e validação empírica util
    Date: 01/01/2015 – 31/12/2024
    ```
 
-   **Google Scholar** (por ser menos estruturada, documente um exemplo de string genérica e como filtrar por ano no menu lateral).
-
 2. **Registro das Datas de Busca:**
 
    * Há uma planilha e uma tabela indicando:
 
-     * Data exata da busca em cada base (por exemplo, “Web of Science – 15/06/2025”).
+     * Data exata da busca em cada base (por exemplo, “Web of Science – 15/05/2025”).
      * String completa utilizada.
      * Número total de resultados brutos retornados e, depois, número após aplicação de filtros de idioma/ano.
 
@@ -214,50 +212,23 @@ Identificar metodologias, estratégias de modelagem e validação empírica util
 **Sugestão de preenchimento (exemplo):**
 
 * **Busca e triagem de estudos:**
+  * 19/05/2025 – 26/05/2025
 
-  * 15/06/2025 – 30/06/2025
 * **Extração de dados:**
+  * 28/05/2025 – 15/06/2025
 
-  * 01/07/2025 – 15/07/2025
 * **Avaliação de qualidade:**
+  * 16/06/2025 – 25/06/2025
 
-  * 16/07/2025 – 30/07/2025
 * **Análise e síntese dos resultados:**
+  * 25/06/2025 – 30/06/2025
 
-  * 01/08/2025 – 20/08/2025
 * **Redação do relatório e ajustes finais:**
-
-  * 21/08/2025 – 10/09/2025
-
-Caso seja trabalho colaborativo, defina, por exemplo:
-
-* **Responsável A (você):** conduzir busca nas bases, organização no Rayyan, extração inicial.
-* **Responsável B (coautor):** segunda triagem, checagem de duplicatas e avaliação de qualidade.
-* **Responsável C (coautor):** análise de dados e produção de gráficos.
-
-Assim, fica claro quem faz o quê e até quando.
+  * 30/06/2025 – 05/07/2025
 
 ---
 
-## 9. Atualizações e Revisões do Protocolo
-
-**Comentário:**
-
-* Boa ideia ter revisões periódicas.
-
-**Detalhes para incluir:**
-
-1. **Pontos de Verificação:**
-
-   * Após a triagem inicial (ex.: dia 30/06/2025), reavaliar critérios se o volume de estudos estiver acima de X (por exemplo, “se mais de 800 artigos ainda estiverem elegíveis após a triagem de resumos, considerar aumentar critérios de inclusão”).
-   * Após a extração de dados de 25 estudos, verificar se há saturação temática (isto é, se os estudos adicionais não trazem novidades substanciais).
-2. **Registro de Alterações:**
-
-   * Incluir seção “Histórico de Revisões do Protocolo” ao final, indicando data, autor e descrição da mudança (por ex.: “05/06/2025 – Ajuste de critérios de exclusão para remover trabalhos sem validação empírica”).
-
----
-
-## 10. Disseminação dos Resultados
+## 9. Disseminação dos Resultados
 
 **Comentário:**
 
@@ -274,13 +245,3 @@ Assim, fica claro quem faz o quê e até quando.
 3. **Versão Resumida em Língua Portuguesa e Inglesa:**
 
    * Se o público-alvo incluir pesquisadores brasileiros, considere preparar um “relatório abreviado” em português, além do artigo em inglês para periódico internacional.
-
----
-
-### Próximos Passos Sugeridos
-
-1. **Definir e Preencher Datas Específicas** no Cronograma (item 8).
-2. **Elaborar as Strings de Busca por Cada Base**, conforme mostrado.
-3. **Criar a Planilha de Extração de Dados** com colunas e exemplos fictícios.
-4. **Registrar o Protocolo em Repositório Público**, se desejar (ex.: Open Science Framework).
-5. **Realizar um Teste Piloto de Busca** em uma base (por exemplo, Scopus) para verificar quantos resultados brutos emergem e checar a necessidade de ajustar termos.
